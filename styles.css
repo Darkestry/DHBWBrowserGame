@@ -1,342 +1,341 @@
 #left1 {
-    display:inline-block;
-    position:relative;
-    width: 100%;
-    height: 15%;
-    cursor: pointer;
+  display:inline-block;
+  position:relative;
+  width: 100%;
+  height: 15%;
+  cursor: pointer;
 }
 #left2 {
-    position:relative;
-    width: 100%;
-    height: 15%;
-    cursor: pointer;
+  position:relative;
+  width: 100%;
+  height: 15%;
+  cursor: pointer;
 }
 #left3 {
-    position:relative;
-    width: 100%;
-    height: 15%;
-    cursor: pointer;
+  position:relative;
+  width: 100%;
+  height: 15%;
+  cursor: pointer;
 }
 #meth {
-    display: inline-block;
-    vertical-align: middle;
-    padding-right: 2em;
+  display: inline-block;
+  vertical-align: middle;
+  padding-right: 2em;
 }
 #money {
-    display: inline-block;
-    vertical-align: middle;
-    padding-right: 2em;
+  display: inline-block;
+  vertical-align: middle;
+  padding-right: 2em;
 }
 #purity {
-    display: inline-block;
-    vertical-align: middle;
-    padding-right: 2em;
+  display: inline-block;
+  vertical-align: middle;
+  padding-right: 2em;
 }
 img{
-    padding: 0.3em;
-    user-select: none;
-    -webkit-user-drag: none;
-    -webkit-user-select: none;
- }
+  padding: 0.3em;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+}
 .text {
-    font-family: 'Merriweather', Georgia,serif;
-    font-weight: 700;
-    font-size: 25px;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    cursor: default;
+  font-family: 'Merriweather', Georgia,serif;
+  font-weight: 700;
+  font-size: 25px;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
 }
 #methrate {
-    font-size: 17px;
+  font-size: 17px;
 }
 #methcount {
-    display: inline;
-    margin-top: 15%;
+  display: inline;
+  margin-top: 15%;
 }
 #moneycount {
-    display: inline;
-    margin-top: 15%;
+  display: inline;
+  margin-top: 15%;
 }
 #moneyrate {
-    font-size: 17px;
+  font-size: 17px;
 }
 .rate {
-    margin-bottom: 15%;
+  margin-bottom: 15%;
 }
 .count {
-    display: inline;
-    margin-top: 15%;
+  display: inline;
+  margin-top: 15%;
 }
 .container {
-    display: grid;
-    grid-template-columns: 1.2fr 1.7fr;
-    grid-template-rows: 1.3fr 1.6fr;
-    gap: 9px 10px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "Resources Dealers"
-      "Upgrades Dealers";
-  }
-  
-  .Resources {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    gap: 5px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "Crystal"
-      "Money"
-      "Purity";
-    grid-area: Resources;
-  }
-  
-  .Crystal {
-    display: grid;
-    grid-template-columns: 0.7fr 1.3fr;
-    grid-template-rows: 1fr;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "Image methcount";
-    grid-area: Crystal;
-  }
-  
-  .Image { grid-area: Image; }
-  
-  .methcount {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1.5fr 0.5fr;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "."
-      "rate1";
-    grid-area: methcount;
-  }
-  
-  .rate1 { grid-area: rate1; }
-  
-  .Money {
-    display: grid;
-    grid-template-columns: 0.7fr 1.3fr;
-    grid-template-rows: 1fr;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      ". moneycount";
-    grid-area: Money;
-  }
-  
-  .moneycount {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1.5fr 0.5fr;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "."
-      "rate2";
-    grid-area: moneycount;
-  }
-  
-  .rate2 { grid-area: rate2; }
-  
-  .Purity {
-    display: grid;
-    grid-template-columns: 0.7fr 1.3fr;
-    grid-template-rows: 1fr;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      ". puritycount";
-    grid-area: Purity;
-  }
-  
-  .puritycount {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1.5fr 0.5fr;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "count"
-      "rate3";
-    grid-area: puritycount;
-  }
-  
-  .count { grid-area: count; }
-  
-  .rate3 { grid-area: rate3; }
-  
-  .Upgrades {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: .6fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr;
-    gap: 3px 2px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "Buy Hire Upgrade Achievements"
-      "Upgrade1 Text1 Text1 Text1"
-      "Upgrade2 Text2 Text2 Text2"
-      "Upgrade3 Text3 Text3 Text3"
-      "Upgrade4 Text4 Text4 Text4"
-      "Upgrade5 Text5 Text5 Text5"
-      "Upgrade6 Text6 Text6 Text6"
-      "Upgrade7 Text7 Text7 Text7"
-      "Upgrade8 Text8 Text8 Text8"
-      "Upgrade9 Text9 Text9 Text9"
-      "Upgrade10 Text10 Text10 Text10"
-      "Upgrade11 Text11 Text11 Text11"
-      "Upgrade12 Text12 Text12 Text12";
-    grid-area: Upgrades;
-  }
+  display: grid;
+  grid-template-columns: 1.2fr 1.7fr;
+  grid-template-rows: 1.3fr 1.6fr;
+  gap: 9px 10px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Resources Dealers"
+    "Upgrades Dealers";
+}
 
-  .Upgrades * {
-    text-align: center;
-    vertical-align: middle;
-    border: 1px red solid;
-    background-color: #0a0000;
-    background-image: url(http://www.transparenttextures.com/patterns/wood-pattern.png);
-    line-height: 31px;
-    font-family: 'Merriweather', Georgia,serif;
-    font-weight: 700;
-    font-size: 15px;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    cursor: default;
-  }
+.Resources {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 5px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Crystal"
+    "Money"
+    "Purity";
+  grid-area: Resources;
+}
 
-  .Buy { grid-area: Buy; line-height: 46px; }
-  
-  .Hire { grid-area: Hire; line-height: 46px; }
-  
-  .Upgrade { grid-area: Upgrade; line-height: 46px; }
-  
-  .Upgrade1 { grid-area: Upgrade1; }
-  
-  .Upgrade2 { grid-area: Upgrade2; }
-  
-  .Achievements { grid-area: Achievements; line-height: 46px; }
-  
-  .Upgrade3 { grid-area: Upgrade3; }
-  
-  .Upgrade4 { grid-area: Upgrade4; }
-  
-  .Upgrade5 { grid-area: Upgrade5; }
-  
-  .Upgrade6 { grid-area: Upgrade6; }
-  
-  .Upgrade7 { grid-area: Upgrade7; }
-  
-  .Upgrade8 { grid-area: Upgrade8; }
-  
-  .Upgrade9 { grid-area: Upgrade9; }
-  
-  .Upgrade10 { grid-area: Upgrade10; }
-  
-  .Upgrade11 { grid-area: Upgrade11; }
-  
-  .Upgrade12 { grid-area: Upgrade12; }
-  
-  .Text1 { grid-area: Text1; }
-  
-  .Text2 { grid-area: Text2; }
-  
-  .Text3 { grid-area: Text3; }
-  
-  .Text4 { grid-area: Text4; }
-  
-  .Text5 { grid-area: Text5; }
-  
-  .Text6 { grid-area: Text6; }
-  
-  .Text7 { grid-area: Text7; }
-  
-  .Text8 { grid-area: Text8; }
-  
-  .Text9 { grid-area: Text9; }
-  
-  .Text10 { grid-area: Text10; }
-  
-  .Text11 { grid-area: Text11; }
-  
-  .Text12 { grid-area: Text12; }
-  
-  .Dealers {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr;
-    gap: 16px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "Dealer1"
-      "Dealer2"
-      "Dealer3"
-      "Dealer4"
-      "Dealer5"
-      "Dealer6"
-      "Dealer7"
-      "Dealer8"
-      "Dealer9"
-      "Dealer10"
-      "Dealer11"
-      "Dealer12";
-    grid-area: Dealers;
-  }
-  .Dealers * {
-    text-align: center;
-    vertical-align: middle;
-    line-height: 31px;
-    font-family: 'Merriweather', Georgia,serif;
-    font-weight: 700;
-    font-size: 15px;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    cursor: default;
-  }
-  
-  .Dealer1 { grid-area: Dealer1; }
-  
-  .Dealer2 { grid-area: Dealer2; }
-  
-  .Dealer3 { grid-area: Dealer3; }
-  
-  .Dealer4 { grid-area: Dealer4; }
-  
-  .Dealer5 { grid-area: Dealer5; }
-  
-  .Dealer6 { grid-area: Dealer6; }
-  
-  .Dealer7 { grid-area: Dealer7; }
-  
-  .Dealer8 { grid-area: Dealer8; }
-  
-  .Dealer9 { grid-area: Dealer9; }
-  
-  .Dealer10 { grid-area: Dealer10; }
-  
-  .Dealer11 { grid-area: Dealer11; }
-  
-  .Dealer12 { grid-area: Dealer12; }
-  
-  
-  html, body , .container {
-    height: 100%;
-    margin: 0;
-  }
-  
-  
+.Crystal {
+  display: grid;
+  grid-template-columns: 0.7fr 1.3fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Image methcount";
+  grid-area: Crystal;
+}
+
+.Image { grid-area: Image; }
+
+.methcount {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1.5fr 0.5fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "."
+    "rate1";
+  grid-area: methcount;
+}
+
+.rate1 { grid-area: rate1; }
+
+.Money {
+  display: grid;
+  grid-template-columns: 0.7fr 1.3fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". moneycount";
+  grid-area: Money;
+}
+
+.moneycount {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1.5fr 0.5fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "."
+    "rate2";
+  grid-area: moneycount;
+}
+
+.rate2 { grid-area: rate2; }
+
+.Purity {
+  display: grid;
+  grid-template-columns: 0.7fr 1.3fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". puritycount";
+  grid-area: Purity;
+}
+
+.puritycount {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1.5fr 0.5fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "count"
+    "rate3";
+  grid-area: puritycount;
+}
+
+.count { grid-area: count; }
+
+.rate3 { grid-area: rate3; }
+
+.Upgrades {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: .6fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr;
+  gap: 3px 2px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Buy Hire Upgrade Achievements"
+    "Upgrade1 Text1 Text1 Text1"
+    "Upgrade2 Text2 Text2 Text2"
+    "Upgrade3 Text3 Text3 Text3"
+    "Upgrade4 Text4 Text4 Text4"
+    "Upgrade5 Text5 Text5 Text5"
+    "Upgrade6 Text6 Text6 Text6"
+    "Upgrade7 Text7 Text7 Text7"
+    "Upgrade8 Text8 Text8 Text8"
+    "Upgrade9 Text9 Text9 Text9"
+    "Upgrade10 Text10 Text10 Text10"
+    "Upgrade11 Text11 Text11 Text11"
+    "Upgrade12 Text12 Text12 Text12";
+  grid-area: Upgrades;
+}
+
+.Upgrades * {
+  text-align: center;
+  vertical-align: middle;
+  border: 1px green solid;
+  background-color: #0a0000;
+  line-height: 31px;
+  font-family: 'Merriweather', Georgia,serif;
+  font-weight: 700;
+  font-size: 15px;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+
+.Buy { grid-area: Buy; line-height: 46px; }
+
+.Hire { grid-area: Hire; line-height: 46px; }
+
+.Upgrade { grid-area: Upgrade; line-height: 46px; }
+
+.Upgrade1 { grid-area: Upgrade1; }
+
+.Upgrade2 { grid-area: Upgrade2; }
+
+.Achievements { grid-area: Achievements; line-height: 46px; }
+
+.Upgrade3 { grid-area: Upgrade3; }
+
+.Upgrade4 { grid-area: Upgrade4; }
+
+.Upgrade5 { grid-area: Upgrade5; }
+
+.Upgrade6 { grid-area: Upgrade6; }
+
+.Upgrade7 { grid-area: Upgrade7; }
+
+.Upgrade8 { grid-area: Upgrade8; }
+
+.Upgrade9 { grid-area: Upgrade9; }
+
+.Upgrade10 { grid-area: Upgrade10; }
+
+.Upgrade11 { grid-area: Upgrade11; }
+
+.Upgrade12 { grid-area: Upgrade12; }
+
+.Text1 { grid-area: Text1; }
+
+.Text2 { grid-area: Text2; }
+
+.Text3 { grid-area: Text3; }
+
+.Text4 { grid-area: Text4; }
+
+.Text5 { grid-area: Text5; }
+
+.Text6 { grid-area: Text6; }
+
+.Text7 { grid-area: Text7; }
+
+.Text8 { grid-area: Text8; }
+
+.Text9 { grid-area: Text9; }
+
+.Text10 { grid-area: Text10; }
+
+.Text11 { grid-area: Text11; }
+
+.Text12 { grid-area: Text12; }
+
+.Dealers {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr;
+  gap: 16px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Dealer1"
+    "Dealer2"
+    "Dealer3"
+    "Dealer4"
+    "Dealer5"
+    "Dealer6"
+    "Dealer7"
+    "Dealer8"
+    "Dealer9"
+    "Dealer10"
+    "Dealer11"
+    "Dealer12";
+  grid-area: Dealers;
+}
+.Dealers * {
+  text-align: center;
+  vertical-align: middle;
+  line-height: 31px;
+  font-family: 'Merriweather', Georgia,serif;
+  font-weight: 700;
+  font-size: 15px;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+
+.Dealer1 { grid-area: Dealer1; }
+
+.Dealer2 { grid-area: Dealer2; }
+
+.Dealer3 { grid-area: Dealer3; }
+
+.Dealer4 { grid-area: Dealer4; }
+
+.Dealer5 { grid-area: Dealer5; }
+
+.Dealer6 { grid-area: Dealer6; }
+
+.Dealer7 { grid-area: Dealer7; }
+
+.Dealer8 { grid-area: Dealer8; }
+
+.Dealer9 { grid-area: Dealer9; }
+
+.Dealer10 { grid-area: Dealer10; }
+
+.Dealer11 { grid-area: Dealer11; }
+
+.Dealer12 { grid-area: Dealer12; }
+
+
+html, body , .container {
+  height: 100%;
+  margin: 0;
+}
+
+
 
 
 
