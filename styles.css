@@ -1,91 +1,23 @@
-#left1 {
-  display:inline-block;
-  position:relative;
-  width: 100%;
-  height: 15%;
-  cursor: pointer;
-}
-#left2 {
-  position:relative;
-  width: 100%;
-  height: 15%;
-  cursor: pointer;
-}
-#left3 {
-  position:relative;
-  width: 100%;
-  height: 15%;
-  cursor: pointer;
-}
-#meth {
-  display: inline-block;
-  vertical-align: middle;
-  padding-right: 2em;
-}
-#money {
-  display: inline-block;
-  vertical-align: middle;
-  padding-right: 2em;
-}
-#purity {
-  display: inline-block;
-  vertical-align: middle;
-  padding-right: 2em;
-}
-img{
-  padding: 0.3em;
-  user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-}
-.text {
-  font-family: 'Merriweather', Georgia,serif;
-  font-weight: 700;
-  font-size: 25px;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  cursor: default;
-}
-#methrate {
-  font-size: 17px;
-}
-#methcount {
-  display: inline;
-  margin-top: 15%;
-}
-#moneycount {
-  display: inline;
-  margin-top: 15%;
-}
-#moneyrate {
-  font-size: 17px;
-}
-.rate {
-  margin-bottom: 15%;
-}
-.count {
-  display: inline;
-  margin-top: 15%;
-}
 .container {
   display: grid;
   grid-template-columns: 1.2fr 1.7fr;
-  grid-template-rows: 1.3fr 1.6fr;
+  grid-template-rows: 1.4fr 1.5fr;
   gap: 9px 10px;
   grid-auto-flow: row;
+  justify-content: stretch;
+  align-content: stretch;
+  justify-items: stretch;
+  align-items: stretch;
   grid-template-areas:
-    "Resources Dealers"
-    "Upgrades Dealers";
+    "Resources right"
+    "Upgrades right";
 }
 
 .Resources {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  gap: 5px 0px;
+  gap: 20px 0px;
   grid-auto-flow: row;
   grid-template-areas:
     "Crystal"
@@ -96,87 +28,116 @@ img{
 
 .Crystal {
   display: grid;
-  grid-template-columns: 0.7fr 1.3fr;
+  grid-template-columns: 0.6fr 1.4fr;
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    "Image methcount";
+    "Image cookiecount";
   grid-area: Crystal;
 }
 
-.Image { grid-area: Image; }
+.Image { grid-area: Image; margin-left: 30px; margin-top: 20px;}
 
-.methcount {
+.cookiecount {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1.5fr 0.5fr;
+  grid-template-rows: 1fr 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
     "."
     "rate1";
-  grid-area: methcount;
+  grid-area: cookiecount;
+  margin-left: 80px;
+  margin-top: 50px;
+  font-size: 40px;
+  font-family: "Cotton Butter";
 }
 
-.rate1 { grid-area: rate1; }
+.rate1 { 
+  grid-area: rate1; 
+  margin-left: 0px;
+  margin-top: 0px;
+  font-size: 25px;
+}
 
 .Money {
   display: grid;
-  grid-template-columns: 0.7fr 1.3fr;
+  grid-template-columns: 0.6fr 1.4fr;
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    ". moneycount";
+    "Image2 moneycount";
   grid-area: Money;
 }
 
 .moneycount {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1.5fr 0.5fr;
+  grid-template-rows: 1fr 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
     "."
     "rate2";
   grid-area: moneycount;
+  margin-left: 80px;
+  margin-top: 50px;
+  font-size: 40px;
+  font-family: "Cotton Butter";
 }
 
-.rate2 { grid-area: rate2; }
+.rate2 {
+  grid-area: rate2;
+  margin-left: 0px;
+  margin-top: 0px;
+  font-size: 25px;
+ }
+
+.Image2 { grid-area: Image2; margin-left: 30px;}
 
 .Purity {
   display: grid;
-  grid-template-columns: 0.7fr 1.3fr;
+  grid-template-columns: 0.6fr 1.4fr;
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    ". puritycount";
+    "Image3 qualitycount";
   grid-area: Purity;
 }
 
-.puritycount {
+.qualitycount {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1.5fr 0.5fr;
+  grid-template-rows: 1fr 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    "count"
+    "."
     "rate3";
-  grid-area: puritycount;
+  grid-area: qualitycount;
+  margin-left: 45px;
+  margin-top: 50px;
+  font-family: "Cotton Butter";
+  font-size: 40px;
 }
 
-.count { grid-area: count; }
+.rate3 { 
+  grid-area: rate3;
+  margin-left: 0px;
+  margin-top: 0px;
+  font-size: 25px;
+ }
 
-.rate3 { grid-area: rate3; }
+.Image3 { grid-area: Image3; }
 
 .Upgrades {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: .6fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr;
+  grid-template-rows: minmax(10px, 40px) 1fr 1fr 1fr 1fr 1fr 1fr;
   gap: 3px 2px;
   grid-auto-flow: row;
   grid-template-areas:
@@ -186,44 +147,26 @@ img{
     "Upgrade3 Text3 Text3 Text3"
     "Upgrade4 Text4 Text4 Text4"
     "Upgrade5 Text5 Text5 Text5"
-    "Upgrade6 Text6 Text6 Text6"
-    "Upgrade7 Text7 Text7 Text7"
-    "Upgrade8 Text8 Text8 Text8"
-    "Upgrade9 Text9 Text9 Text9"
-    "Upgrade10 Text10 Text10 Text10"
-    "Upgrade11 Text11 Text11 Text11"
-    "Upgrade12 Text12 Text12 Text12";
+    "Upgrade6 Text6 Text6 Text6";
   grid-area: Upgrades;
+  font-family: "Cotton Butter";
+  font-size: 25px;
+  margin-left: 30px;
 }
 
 .Upgrades * {
-  text-align: center;
-  vertical-align: middle;
-  border: 1px green solid;
-  background-color: #0a0000;
-  line-height: 31px;
-  font-family: 'Merriweather', Georgia,serif;
-  font-weight: 700;
-  font-size: 15px;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  cursor: default;
+  margin: auto;
 }
 
-.Buy { grid-area: Buy; line-height: 46px; }
+.Hire { grid-area: Hire; }
 
-.Hire { grid-area: Hire; line-height: 46px; }
-
-.Upgrade { grid-area: Upgrade; line-height: 46px; }
+.Upgrade { grid-area: Upgrade; }
 
 .Upgrade1 { grid-area: Upgrade1; }
 
 .Upgrade2 { grid-area: Upgrade2; }
 
-.Achievements { grid-area: Achievements; line-height: 46px; }
+.Achievements { grid-area: Achievements; }
 
 .Upgrade3 { grid-area: Upgrade3; }
 
@@ -232,18 +175,6 @@ img{
 .Upgrade5 { grid-area: Upgrade5; }
 
 .Upgrade6 { grid-area: Upgrade6; }
-
-.Upgrade7 { grid-area: Upgrade7; }
-
-.Upgrade8 { grid-area: Upgrade8; }
-
-.Upgrade9 { grid-area: Upgrade9; }
-
-.Upgrade10 { grid-area: Upgrade10; }
-
-.Upgrade11 { grid-area: Upgrade11; }
-
-.Upgrade12 { grid-area: Upgrade12; }
 
 .Text1 { grid-area: Text1; }
 
@@ -257,77 +188,35 @@ img{
 
 .Text6 { grid-area: Text6; }
 
-.Text7 { grid-area: Text7; }
+.Buy { grid-area: Buy; }
 
-.Text8 { grid-area: Text8; }
-
-.Text9 { grid-area: Text9; }
-
-.Text10 { grid-area: Text10; }
-
-.Text11 { grid-area: Text11; }
-
-.Text12 { grid-area: Text12; }
-
-.Dealers {
+.right {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr;
+  grid-template-rows: 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr 0.4fr;
   gap: 16px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    "Dealer1"
-    "Dealer2"
-    "Dealer3"
-    "Dealer4"
-    "Dealer5"
-    "Dealer6"
-    "Dealer7"
-    "Dealer8"
-    "Dealer9"
-    "Dealer10"
-    "Dealer11"
-    "Dealer12";
-  grid-area: Dealers;
-}
-.Dealers * {
-  text-align: center;
-  vertical-align: middle;
-  line-height: 31px;
-  font-family: 'Merriweather', Georgia,serif;
-  font-weight: 700;
-  font-size: 15px;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  cursor: default;
+    "Dealer"
+    "Baker1"
+    "Baker2"
+    "Baker3"
+    "Baker4"
+    "Baker5";
+  grid-area: right;
 }
 
-.Dealer1 { grid-area: Dealer1; }
+.Dealer { grid-area: Dealer; }
 
-.Dealer2 { grid-area: Dealer2; }
+.Baker1 { grid-area: Baker1; }
 
-.Dealer3 { grid-area: Dealer3; }
+.Baker2 { grid-area: Baker2; }
 
-.Dealer4 { grid-area: Dealer4; }
+.Baker3 { grid-area: Baker3; }
 
-.Dealer5 { grid-area: Dealer5; }
+.Baker4 { grid-area: Baker4; }
 
-.Dealer6 { grid-area: Dealer6; }
-
-.Dealer7 { grid-area: Dealer7; }
-
-.Dealer8 { grid-area: Dealer8; }
-
-.Dealer9 { grid-area: Dealer9; }
-
-.Dealer10 { grid-area: Dealer10; }
-
-.Dealer11 { grid-area: Dealer11; }
-
-.Dealer12 { grid-area: Dealer12; }
+.Baker5 { grid-area: Baker5; }
 
 
 html, body , .container {
@@ -335,8 +224,22 @@ html, body , .container {
   margin: 0;
 }
 
+/* For presentation only, no need to copy the code below
 
+.container * {
+  border: 1px solid red;
+  position: relative;
+}
 
-
-
+.container *:after {
+  content:attr(class);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
 
