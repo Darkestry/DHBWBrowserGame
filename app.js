@@ -1,78 +1,104 @@
-let meth = 0.0;  
+let cookies = 0.0;  
 let money = 15000;
 let purity = 0.2;
-let dealers = 0;
+let sellers = 0;
 let interval = 100; //100ms
 let trailers = 0;
-let cooks = 0;
+let grandmas = 0;
+
+document.getElementById("buyBaker1").style.display = "none";
 
 function update() {
-    document.getElementById("methcount").innerText = Math.round(meth) + "G";
-    document.getElementById("moneycount").innerText = Math.round(money) + "$";
-    document.getElementById("moneyrate").innerText = 4 * dealers + "$/sec";
-    document.getElementById("dealer1").innerText = "You have " + dealers + "/1000" + " dealers"
-    document.getElementById("Trailer").innerText = "You have " + cooks + "/" + trailers * 5 + " cooks"
+    document.getElementById("cookiecount").innerText = Math.round(cookies) + " Cookies";
+    document.getElementById("cookierate").innerText = Math.round(grandmas * 0.4) + " Cookies/sec";
+    document.getElementById("moneycount").innerText = Math.round(money) + " Dollars";
+    document.getElementById("moneyrate").innerText = "$" + Math.round(20 * purity * sellers) + "/sec";
+    document.getElementById("dealerDescription").innerText = sellers + " / 1000" + " Sellers"
 }
 
 function add() {
-    meth += 1;
+    cookies += 1;
     update();
 }
 
 function sell() {
-    if (meth > 0) {
-        meth -= 1;
+    if (cookies > 0) {
+        cookies -= 1;
         money += (100 * purity);
-        console.log(meth, money);
+        console.log(cookies, money);
         update();
     }
 }
 
-function unlockDealer1() {
+const baker1description = document.getElementById("baker1Description");
+const baker1image = document.getElementById("Baker1image");
+
+function unlockBaker1() {
     if (money >= 2000) {
         money -= 2000;
+        if(trailers == 0){
+            baker1image.src="https://www.kindpng.com/picc/m/51-515317_curtainsider-truck-icon-big-trailer-truck-hd-png.png";
+            baker1image.style.maxWidth = "100%";
+            document.getElementById("Baker1").style.borderWidth = "0px";
+            purity += 0.07;
+            document.getElementById("qualitycount").innerText = purity * 100 + "% Quality";
+        }
         trailers += 1;
-        document.getElementById("Upgrade1").setAttribute("onclick", "return false");
-        document.getElementById("Dealer2").style.backgroundImage="https://www.kindpng.com/picc/m/51-515317_curtainsider-truck-icon-big-trailer-truck-hd-png.png";
+        document.getElementById("buyBaker1").style.display = "grid";
+        baker1description.innerText = grandmas + " / " + (trailers * 5) + " Grandmas";
+        let clickdown = new Audio('http://orteil.dashnet.org/cookieclicker/snd/buy4.mp3');
+        clickdown.volume = 0.2;
+        clickdown.load();
+        clickdown.play();
     }
 }
 
-function buyDealer1() {
+function buyDealer() {
     if (money >= 1000) {
         money -= 1000;
-        dealers += 1;
+        sellers += 1;
+        playAudio("buy3")
         update();
     }
 }
 
-function buyCook() {
-    if (money >= 500 && cooks < (trailers * 5)) {
+function buyBaker1() {
+    if (money >= 500 && grandmas < (trailers * 5)) {
         money -= 500;
-        cooks += 1;
+        grandmas += 1;
+        baker1description.innerText = grandmas + " / " + (trailers * 5) + " Grandmas";
+        playAudio("buy3")
         update();
     }
 }
+
+function playAudio(audio) {
+    let clickdown = new Audio(`http://orteil.dashnet.org/cookieclicker/snd/${audio}.mp3`);
+        clickdown.volume = 0.2;
+        clickdown.load();
+        clickdown.play();
+} 
 
 function round11(num){
     return Math.round(num*(Math.pow(10, 10))) / Math.pow(10, 10)
 }
 
 function autoSell() {
-    let minimum = Math.min(dealers, (5 * meth))
+    let minimum = Math.min(sellers, (5 * cookies))
     if (minimum < 1) {
         minimum = 1;
     }
-    if (dealers > 0 && meth >= 0.2 / (1000/interval)) {
-        meth -= (0.2 * minimum) / (1000/interval);
-        meth = round11(meth)
-        money += (4 * minimum) / (1000/interval);
-        money = round11(money)
+    if (sellers > 0 && cookies >= purity / (1000 / interval)) {
+        cookies -= (purity * minimum) / (1000 / interval);
+        cookies = round11(cookies);
+        money += (20 * purity * minimum) / (1000 / interval);
+        money = round11(money);
     }
 }
 
 function autoCook() {
-    meth += 0.4 * cooks / (1000/interval)
-    meth = round11(meth)
+    cookies += 0.4 * grandmas / (1000/interval);
+    cookies = round11(cookies);
 }
 
 function timer() {
@@ -81,4 +107,74 @@ function timer() {
     update();
 }
 setInterval(timer, interval)
+
+const cookieimage = document.getElementById("cookieimage");
+const moneyimage = document.getElementById("moneyimage");
+
+cookieimage.addEventListener("click", e => {
+    playAudio("click1")
+});
+
+moneyimage.addEventListener("click", e => {
+    playAudio("sell1")
+});
+
+function buy() {
+    var e = document.getElementById("buy");
+    highlight(e);
+    playAudio("buy3")
+}
+
+function hire() {
+    var e = document.getElementById("hire");
+    highlight(e);
+    playAudio("buy3")
+}
+
+function upgrade() {
+    var e = document.getElementById("upgrade");
+    highlight(e);
+    playAudio("buy3")
+}
+
+function achievements() {
+    var e = document.getElementById("achievements");
+    highlight(e);
+    playAudio("buy3")
+}
+
+function highlight(element) {
+    let buy = document.getElementById("buy");
+    let hire = document.getElementById("hire");
+    let upgrade = document.getElementById("upgrade");
+    let achievements = document.getElementById("achievements");
+    if(window.getComputedStyle(element).backgroundColor == "rgb(128, 84, 0)") {
+        switch(element) {
+            case buy:
+                buy.style.backgroundColor = "#c58300";
+                hire.style.backgroundColor = "#805400";
+                upgrade.style.backgroundColor = "#805400";
+                achievements.style.backgroundColor = "#805400";
+                break;
+            case hire:
+                buy.style.backgroundColor = "#805400";
+                hire.style.backgroundColor = "#c58300";
+                upgrade.style.backgroundColor = "#805400";
+                achievements.style.backgroundColor = "#805400";
+                break;
+            case upgrade:
+                buy.style.backgroundColor = "#805400";
+                hire.style.backgroundColor = "#805400";
+                upgrade.style.backgroundColor = "#c58300";
+                achievements.style.backgroundColor = "#805400";
+                break;
+            case achievements:
+                buy.style.backgroundColor = "#805400";
+                hire.style.backgroundColor = "#805400";
+                upgrade.style.backgroundColor = "#805400";
+                achievements.style.backgroundColor = "#c58300";
+                break;
+        }
+    }
+}
 

@@ -9,36 +9,29 @@
 <meta name="viewport" content="user-scalable=no"/>
 <title>Leon</title> 
 <link rel="stylesheet" href="styles.css" type="text/css" media="screen, projection" /> 
-<script src="app.js"></script> 
 </head>
 <body>
   <div class="container">
     <div class="Resources">
       <div class="Crystal">
         <div class="Image">
-          <img src="Download.png" width="180px", height="180px">
+          <img id="cookieimage" src="Download.png" width="180px", height="180px" onclick=add()>
         </div>
-        <div class="cookiecount">0 Cookies
-          <div class="rate1">
-            0 Cookies/sec
-          </div>
+        <div class="cookiecount"><span id="cookiecount">0 Cookies</span>
+            <div class="rate1"><span id="cookierate">0 Cookies/sec</span></div>
         </div>
       </div>
       <div class="Money">
-        <div class="moneycount">0 Dollars
-          <div class="rate2">
-            $0/sec
-          </div>
+        <div class="moneycount"><span id="moneycount">0 Dollars</span>
+          <div class="rate2"><span id="moneyrate">$0/sec</span></div>
         </div>
         <div class="Image2">
-          <img src="money.PNG" width="180px", height="180px">
+          <img id="moneyimage" src="money.PNG" width="180px", height="180px" onclick="sell()">
         </div>
       </div>
       <div class="Purity">
-        <div class="qualitycount">20% Quality
-          <div class="rate3">
-            Quality grade F
-          </div>
+        <div class="qualitycount"><span id="qualitycount" >20% Quality</span>
+          <div class="rate3"><span id="qualityrating">Quality grade F</span></div>
         </div>
         <div class="Image3">
           <img src="191-1910894_stone-cliparts-“-diamond-cartoon.png" width="240px" height="180px">
@@ -46,31 +39,50 @@
       </div>
     </div>
     <div class="Upgrades">
-      <div class="Buy">Buy</div>
-      <div class="Hire">Hire</div>
-      <div class="Upgrade">Upgrade</div>
-      <div class="Upgrade1"></div>
-      <div class="Upgrade2"></div>
-      <div class="Achievements">Achievements</div>
-      <div class="Upgrade3"></div>
-      <div class="Upgrade4"></div>
-      <div class="Upgrade5"></div>
-      <div class="Upgrade6"></div>
-      <div class="Text1"></div>
-      <div class="Text2"></div>
-      <div class="Text3"></div>
-      <div class="Text4"></div>
-      <div class="Text5"></div>
-      <div class="Text6"></div>
+      <div id="buy" class="Buy" onclick="buy()">Buy</div>
+      <div id="hire" class="Hire" onclick="hire()">Hire</div>
+      <div id="upgrade" class="Upgrade" onclick="upgrade()">Upgrade</div>
+      <div id="achievements" class="Achievements" onclick="achievements()">Achievements</div>
+      <div id="Upgrade1" class="Upgrade1" onclick="unlockBaker1()">Trailer</div>
+      <div class="Upgrade2">House</div>
+      <div class="Upgrade3">Facility</div>
+      <div class="Upgrade4">locked</div>
+      <div class="Upgrade5">locked</div>
+      <div class="Upgrade6">locked</div>
+      <div class="Text1">$2.000 &ensp; Supports 5 Grandmas</div>
+      <div class="Text2">$100.000 &ensp; Supports 10 Students</div>
+      <div class="Text3">$1.000.000 &ensp; Supports 30 Chemists</div>
+      <div class="Text4">locked</div>
+      <div class="Text5">locked</div>
+      <div class="Text6">locked</div>
     </div>
     <div class="right">
-      <div class="Dealer"></div>
-      <div class="Baker1"></div>
-      <div class="Baker2"></div>
-      <div class="Baker3"></div>
-      <div class="Baker4"></div>
-      <div class="Baker5"></div>
+      <div class="Dealer">
+        <img src="Grandma.png" height="139px">
+      </div>
+      <div id="Baker1" class="Baker1">
+        <img id="Baker1image" src="lock_symbol.PNG" height="139px">
+      </div>
+      <div class="Baker2">
+        <img src="lock_symbol.PNG" height="139px">
+      </div>
+      <div class="Baker3">
+        <img src="lock_symbol.PNG" height="139px">
+      </div>
+      <div class="Baker4">
+        <img src="lock_symbol.PNG" height="139px">
+      </div>
+      <div class="Baker5">
+        <img src="lock_symbol.PNG" height="139px">
+      </div>
+      <div class="DealerDescription"><span id="dealerDescription">0 / 1000 Sellers </span><button id="buyDealer" onclick="buyDealer()">$1000&ensp;Buy</button></div>
+      <div  class="Baker1Description"><span id="baker1Description">locked</span><button id="buyBaker1" onclick="buyBaker1()">$500&ensp;Buy</button></div>
+      <div class="Baker2Description">locked</div>
+      <div class="Baker3Description">locked</div>
+      <div class="Baker4Description">locked</div>
+      <div class="Baker5Description">locked</div>
     </div>
   </div>
 </body>
+<script src="app.js"></script> 
 </html>
