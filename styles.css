@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Cotton Butter';
+  src: url('Cotton\ Butter.ttf') format('truetype');
+}
+
 .container {
   display: grid;
   grid-template-columns: 1.2fr 1.7fr;
@@ -177,11 +182,15 @@
 
 .Upgrade { grid-area: Upgrade; background-color: #805400;}
 
+.Achievements { grid-area: Achievements; background-color: #805400;}
+
 .Upgrade1 { grid-area: Upgrade1; background-color: #268824;}
 
-.Upgrade2 { grid-area: Upgrade2; background-color: #268824;}
+.Upgrade1:hover, .Upgrade2:hover, .Upgrade3:hover, .Upgrade4:hover, .Upgrade5:hover, .Upgrade6:hover {
+  background-color: lawngreen;
+}
 
-.Achievements { grid-area: Achievements; background-color: #805400;}
+.Upgrade2 { grid-area: Upgrade2; background-color: #268824;}
 
 .Upgrade3 { grid-area: Upgrade3; background-color: #268824;}
 
@@ -241,7 +250,7 @@ img:hover {
 
 .Dealer { grid-area: Dealer;  border-style: solid; border-color: black; border-width: 0px; border-right-width: 0;}
 
-#buyDealer, #buyBaker1 {
+#buyDealer, #buyBaker1, #buyBaker2, #buyBaker3 {
   background-color: #5a3300;
   border: none;
   height: 94px;
@@ -255,6 +264,10 @@ img:hover {
   color: #04B000;
 }
 
+#buyDealer:hover, #buyBaker1:hover, #buyBaker2:hover, #buyBaker3:hover, #buyBaker4:hover, #buyBaker5:hover {
+  cursor: pointer;
+}
+
 .Baker1 { grid-area: Baker1; border-style: solid; border-color: black; border-width: 2px; border-right-width: 0;}
 
 .Baker2 { grid-area: Baker2; border-style: solid; border-color: black; border-width: 2px; border-right-width: 0;}
@@ -265,11 +278,19 @@ img:hover {
 
 .Baker5 { grid-area: Baker5; border-style: solid; border-color: black; border-width: 2px; border-right-width: 0;}
 
-.DealerDescription { grid-area: DealerDescription; background-color: #805400; font-size: 72px; font-family: "Cotton Butter"; text-align: left; text-indent: 50px; border-style: solid; border-color: black; border-width: 2px;}
+#baker1Amount, #baker2Amount, #baker3Amount, #baker4Amount, #baker5Amount {
+  font-family: "Cotton Butter";
+  font-size: 24px;
+  position: absolute;
+  top: -0.2em;
+  left: 5px;
+}
 
-.Baker1Description { grid-area: Baker1Description; background-color: #805400; font-size: 72px; font-family: "Cotton Butter"; text-align: center;  border-style: solid; border-color: black; border-width: 2px;}
+.DealerDescription { grid-area: DealerDescription; background-color: #805400; font-size: 72px; font-family: "Cotton Butter"; text-align: center; text-indent: 0px; border-style: solid; border-color: black; border-width: 2px;}
 
-.Baker2Description { grid-area: Baker2Description; background-color: #805400; font-size: 72px; font-family: "Cotton Butter"; text-align: center;  border-style: solid; border-color: black; border-width: 2px;}
+.Baker1Description { grid-area: Baker1Description; background-color: #805400; font-size: 72px; font-family: "Cotton Butter"; text-align: center;  text-indent: -20px; border-style: solid; border-color: black; border-width: 2px;}
+
+.Baker2Description { grid-area: Baker2Description; background-color: #805400; font-size: 72px; font-family: "Cotton Butter"; text-align: center;  text-indent: 22px; border-style: solid; border-color: black; border-width: 2px;}
 
 .Baker3Description { grid-area: Baker3Description; background-color: #805400; font-size: 72px; font-family: "Cotton Butter"; text-align: center;  border-style: solid; border-color: black; border-width: 2px;}
 

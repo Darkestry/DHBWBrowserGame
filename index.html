@@ -44,14 +44,14 @@
       <div id="upgrade" class="Upgrade" onclick="upgrade()">Upgrade</div>
       <div id="achievements" class="Achievements" onclick="achievements()">Achievements</div>
       <div id="Upgrade1" class="Upgrade1" onclick="unlockBaker1()">Trailer</div>
-      <div class="Upgrade2">House</div>
-      <div class="Upgrade3">Facility</div>
-      <div class="Upgrade4">locked</div>
-      <div class="Upgrade5">locked</div>
-      <div class="Upgrade6">locked</div>
-      <div class="Text1">$2.000 &ensp; Supports 5 Grandmas</div>
-      <div class="Text2">$100.000 &ensp; Supports 10 Students</div>
-      <div class="Text3">$1.000.000 &ensp; Supports 30 Chemists</div>
+      <div id="Upgrade2" class="Upgrade2" onclick="unlockBaker2()">House</div>
+      <div id="Upgrade3" class="Upgrade3" onclick="unlockBaker3()">Bakery</div>
+      <div id="Upgrade4" class="Upgrade4" onclick="unlockBaker4()">locked</div>
+      <div id="Upgrade5" class="Upgrade5" onclick="unlockBaker5()">locked</div>
+      <div id="Upgrade6" class="Upgrade6" onclick="unlockBaker6()">locked</div>
+      <div class="Text1">$2.000 &ensp; Supports 5 Students</div>
+      <div class="Text2">$100.000 &ensp; Supports 10 Grandmas</div>
+      <div class="Text3">$1.000.000 &ensp; Supports 30 Bakers</div>
       <div class="Text4">locked</div>
       <div class="Text5">locked</div>
       <div class="Text6">locked</div>
@@ -62,23 +62,28 @@
       </div>
       <div id="Baker1" class="Baker1">
         <img id="Baker1image" src="lock_symbol.PNG" height="139px">
+        <span id="baker1Amount"></span>
       </div>
-      <div class="Baker2">
-        <img src="lock_symbol.PNG" height="139px">
+      <div id="Baker2" class="Baker2">
+        <img id="Baker2image" src="lock_symbol.PNG" height="139px">
+        <span id="baker2Amount"></span>
       </div>
-      <div class="Baker3">
-        <img src="lock_symbol.PNG" height="139px">
+      <div id="Baker3" class="Baker3">
+        <img id="Baker3image" src="lock_symbol.PNG" height="139px">
+        <span id="baker3Amount"></span>
       </div>
-      <div class="Baker4">
-        <img src="lock_symbol.PNG" height="139px">
+      <div id="Baker4" class="Baker4">
+        <img id="Baker4image" src="lock_symbol.PNG" height="139px">
+        <span id="baker4Amount"></span>
       </div>
-      <div class="Baker5">
-        <img src="lock_symbol.PNG" height="139px">
+      <div id="Baker5" class="Baker5">
+        <img id="Baker5image" src="lock_symbol.PNG" height="139px">
+        <span id="baker5Amount"></span>
       </div>
       <div class="DealerDescription"><span id="dealerDescription">0 / 1000 Sellers </span><button id="buyDealer" onclick="buyDealer()">$1000&ensp;Buy</button></div>
       <div  class="Baker1Description"><span id="baker1Description">locked</span><button id="buyBaker1" onclick="buyBaker1()">$500&ensp;Buy</button></div>
-      <div class="Baker2Description">locked</div>
-      <div class="Baker3Description">locked</div>
+      <div class="Baker2Description"><span id="baker2Description">locked</span><button id="buyBaker2" onclick="buyBaker2()">$5000&ensp;Buy</button></div>
+      <div class="Baker3Description"><span id="baker3Description">locked</span><button id="buyBaker3" onclick="buyBaker3()">$50000&ensp;Buy</button></div>
       <div class="Baker4Description">locked</div>
       <div class="Baker5Description">locked</div>
     </div>
