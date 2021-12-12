@@ -17,7 +17,7 @@
         <div class="Image">
           <img id="cookieimage" src="Download.png" width="180px", height="180px" onclick=add()>
         </div>
-        <div class="cookiecount"><span id="cookiecount">0 Cookies</span>
+        <div class="cookiecount"><span id="arrow">&#8593;</span><span id="cookiecount">0 Cookies</span>
             <div class="rate1"><span id="cookierate">0 Cookies/sec</span></div>
         </div>
       </div>
@@ -44,17 +44,22 @@
       <div id="upgrade" class="Upgrade" onclick="upgrade()">Upgrade</div>
       <div id="achievements" class="Achievements" onclick="achievements()">Achievements</div>
       <div id="Upgrade1" class="Upgrade1" onclick="unlockBaker1()">Trailer</div>
+      <div id="hire1" class="Hire1">Recruiter</div>
       <div id="Upgrade2" class="Upgrade2" onclick="unlockBaker2()">House</div>
+      <div id="hire2" class="Hire2">Police Officer</div>
       <div id="Upgrade3" class="Upgrade3" onclick="unlockBaker3()">Bakery</div>
+      <div id="hire3" class="Hire3">Banker</div>
       <div id="Upgrade4" class="Upgrade4" onclick="unlockBaker4()">locked</div>
+      <div id="hire4" class="Hire4">Chemist</div>
       <div id="Upgrade5" class="Upgrade5" onclick="unlockBaker5()">locked</div>
+      <div id="hire5" class="Hire5">Master Baker</div>
       <div id="Upgrade6" class="Upgrade6" onclick="unlockBaker6()">locked</div>
-      <div class="Text1">$2.000 &ensp; Supports 5 Students</div>
-      <div class="Text2">$100.000 &ensp; Supports 10 Grandmas</div>
-      <div class="Text3">$1.000.000 &ensp; Supports 30 Bakers</div>
+      <div class="Text1"><span class="LeftSpan">$2.000</span><span id="rightSpan1" class="RightSpan">Supports 5 Students</span></div>
+      <div class="Text2"><span class="LeftSpan">$100.000</span><span id="rightSpan2" class="RightSpan" >Supports 10 Grandmas</span></div>
+      <div class="Text3"><span class="LeftSpan">$1.000.000</span><span id="rightSpan3" class="RightSpan">Supports 30 Bakers</span></div>
       <div class="Text4">locked</div>
       <div class="Text5">locked</div>
-      <div class="Text6">locked</div>
+      <div id="text6" class="Text6">locked</div>
     </div>
     <div class="right">
       <div class="Dealer">
@@ -89,5 +94,5 @@
     </div>
   </div>
 </body>
-<script src="app.js"></script> 
+<script defer src="app.js"></script> 
 </html>

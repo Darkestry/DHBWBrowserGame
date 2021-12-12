@@ -1,8 +1,7 @@
 let cookies = 0.0;  
-let money = 15000000;
+let money = 15000;
 let purity = 0.2;
 let sellers = 0;
-let interval = 100; //100ms
 let trailers = 0;
 let houses = 0;
 let grandmas = 0;
@@ -10,24 +9,60 @@ let students = 0;
 let bakers = 0;
 let bakeries = 0;
 
+let arrow = document.getElementById("arrow")
+
 let baker1Amount = document.getElementById("baker1Amount");
 let baker2Amount = document.getElementById("baker2Amount");
 let baker3Amount = document.getElementById("baker3Amount");
 
+let hire1 = document.getElementById("hire1");
+let hire2 = document.getElementById("hire2");
+let hire3 = document.getElementById("hire3");
+let hire4 = document.getElementById("hire4");
+let hire5 = document.getElementById("hire5");
+
+let upgrade6 = document.getElementById("Upgrade6")
+let text6 = document.getElementById("text6");
+
 document.getElementById("buyBaker1").style.display = "none";
 document.getElementById("buyBaker2").style.display = "none";
 document.getElementById("buyBaker3").style.display = "none";
-
+toggleHire("hide")
+arrow.style.display = "none";
 baker1Amount.style.display = "none";
 baker2Amount.style.display = "none";
 baker3Amount.style.display = "none";
 
+
+let elapsed; // framerate of window object in milliseconds
+let cookiesPerFrame;
+
 function update() {
     document.getElementById("cookiecount").innerText = Math.round(cookies) + " Cookies";
-    document.getElementById("cookierate").innerText = Math.round((students * 0.4) + (grandmas * 4.4) + (bakers * 13.8)) + " Cookies/sec";
+    document.getElementById("cookierate").innerText = Math.round(((students * 0.4) + (grandmas * 4.4) + (bakers * 13.8) + Number.EPSILON) * 10) / 10 + " Cookies/sec";
     document.getElementById("moneycount").innerText = Math.round(money) + " Dollars";
-    document.getElementById("moneyrate").innerText = "$" + Math.round(20 * purity * sellers) + "/sec";
+    document.getElementById("moneyrate").innerText = "$" + Math.round((20 * purity * sellers + Number.EPSILON) * 10) / 10 + "/sec";
     document.getElementById("dealerDescription").innerText = sellers + " / 1000" + " Sellers"
+    arrowIndicator();
+}
+
+function arrowIndicator() {
+    cookiesPerFrame = ((0.4 * students) + (4.4 * grandmas) + (13.8 * bakers)) / (1000/elapsed);
+    if(isNaN(cookiesPerFrame)){
+        cookiesPerFrame = 0;
+    }
+    console.log(cookiesPerFrame, 0.2 * sellers / (1000/elapsed))
+    if(cookiesPerFrame > (0.2 * sellers) / (1000/elapsed)){
+        arrow.innerHTML = "&#8593;";
+        arrow.style.color = "green";
+        arrow.style.display = "inline";
+    } else if (cookiesPerFrame == (0.2 * sellers) / (1000/elapsed)){
+        arrow.style.display = "none";
+    } else if (cookiesPerFrame < (0.2 * sellers) / (1000/elapsed)){
+        arrow.innerHTML = "&#8595;";
+        arrow.style.color = "red";
+        arrow.style.display = "inline";
+    }
 }
 
 function add() {
@@ -36,7 +71,7 @@ function add() {
 }
 
 function sell() {
-    if (cookies > 0) {
+    if (cookies >= 1) {
         cookies -= 1;
         money += (100 * purity);
         console.log(cookies, money);
@@ -164,25 +199,23 @@ function autoSell() {
     if (minimum < 1) {
         minimum = 1;
     }
-    if (sellers > 0 && cookies >= purity / (1000 / interval)) {
-        cookies -= (purity * minimum) / (1000 / interval);
-        cookies = round11(cookies);
-        money += (20 * purity * minimum) / (1000 / interval);
-        money = round11(money);
+    if (sellers > 0 && cookies >= purity / (1000 / elapsed)) {
+        if (cookies < sellers / 5){
+            cookies -= 0.2 / (1000  / (elapsed * sellers));
+            money += (20 * purity * sellers) / (1000 / elapsed);
+        } else {
+            cookies -= (0.2 * minimum) / (1000 / elapsed);
+            money += (20 * purity * minimum) / (1000 / elapsed);
+        }
     }
 }
 
 function autoCook() {
-    cookies += (0.4 * students) + (4.4 * grandmas) + (13.8 * bakers) / (1000/interval);
-    cookies = round11(cookies);
+    if(isNaN(cookies)){
+        cookies = 0;
+    }
+    cookies += (((0.4 * students) + (4.4 * grandmas) + (13.8 * bakers)) / (1000/elapsed));
 }
-
-function timer() {
-    autoSell();
-    autoCook();
-    update();
-}
-setInterval(timer, interval)
 
 const cookieimage = document.getElementById("cookieimage");
 const moneyimage = document.getElementById("moneyimage");
@@ -198,13 +231,35 @@ moneyimage.addEventListener("click", e => {
 function buy() {
     var e = document.getElementById("buy");
     highlight(e);
+    toggleHire("hide")
     playAudio("buy3")
 }
 
 function hire() {
     var e = document.getElementById("hire");
     highlight(e);
+    toggleHire("show")
     playAudio("buy3")
+}
+
+function toggleHire(toggle) {
+    if(toggle == "show") {
+        hire1.style.display = "grid";
+        hire2.style.display = "grid";
+        hire3.style.display = "grid";
+        hire4.style.display = "grid";
+        hire5.style.display = "grid";
+        upgrade6.style.display = "none"
+        text6.style.display = "none"
+    } else if (toggle == "hide") {
+        hire1.style.display = "none";
+        hire2.style.display = "none";
+        hire3.style.display = "none";
+        hire4.style.display = "none";
+        hire5.style.display = "none";
+        upgrade6.style.display = "grid"
+        text6.style.display = "grid"
+    }
 }
 
 function upgrade() {
@@ -254,3 +309,14 @@ function highlight(element) {
     }
 }
 
+let lastTime;
+
+function timer(now) {
+    elapsed = now - lastTime;
+    lastTime = now; //HighResDomTimeStamp
+    autoSell();
+    autoCook();
+    update();
+    requestAnimationFrame(timer);
+}
+window.requestAnimationFrame(timer);
