@@ -43,27 +43,31 @@
       <div id="hire" class="Hire" onclick="hire()">Hire</div>
       <div id="upgrade" class="Upgrade" onclick="upgrade()">Upgrade</div>
       <div id="achievements" class="Achievements" onclick="achievements()">Achievements</div>
-      <div id="Upgrade1" class="Upgrade1" onclick="unlockBaker1()">Trailer</div>
-      <div id="hire1" class="Hire1">Recruiter</div>
-      <div id="Upgrade2" class="Upgrade2" onclick="unlockBaker2()">House</div>
+      <div id="buy1" class="Buy1" onclick="unlockBaker1()">Trailer</div>
+      <div id="hire1" class="Hire1" onclick="buyRecruiter()">Recruiter</div>
+      <div id="upgrade1" class="Upgrade1" onclick="unlockUpgrade1()">Double Click</div>
+      <div id="buy2" class="Buy2" onclick="unlockBaker2()">House</div>
       <div id="hire2" class="Hire2">Police Officer</div>
-      <div id="Upgrade3" class="Upgrade3" onclick="unlockBaker3()">Bakery</div>
-      <div id="hire3" class="Hire3">Banker</div>
-      <div id="Upgrade4" class="Upgrade4" onclick="unlockBaker4()">locked</div>
-      <div id="hire4" class="Hire4">Chemist</div>
-      <div id="Upgrade5" class="Upgrade5" onclick="unlockBaker5()">locked</div>
-      <div id="hire5" class="Hire5">Master Baker</div>
-      <div id="Upgrade6" class="Upgrade6" onclick="unlockBaker6()">locked</div>
-      <div class="Text1"><span class="LeftSpan">$2.000</span><span id="rightSpan1" class="RightSpan">Supports 5 Students</span></div>
-      <div class="Text2"><span class="LeftSpan">$100.000</span><span id="rightSpan2" class="RightSpan" >Supports 10 Grandmas</span></div>
-      <div class="Text3"><span class="LeftSpan">$1.000.000</span><span id="rightSpan3" class="RightSpan">Supports 30 Bakers</span></div>
-      <div class="Text4">locked</div>
-      <div class="Text5">locked</div>
-      <div id="text6" class="Text6">locked</div>
+      <div id="upgrade2" class="Upgrade2" onclick="unlockUpgrade2()">Expansion 1</div>
+      <div id="buy3" class="Buy3" onclick="unlockBaker3()">Bakery</div>
+      <div id="hire3" class="Hire3">Master Baker</div>
+      <div id="upgrade3" class="Upgrade3" onclick="unlockUpgrade3()">Cookiematics</div>
+      <div id="buy4" class="Buy4" onclick="unlockBaker4()">Island</div>
+      <div id="hire4" class="Hire4">Banker</div>
+      <div id="upgrade4" class="Upgrade4" onclick="unlockUpgrade4()">Expansion 2</div>
+      <div id="buy5" class="Buy5" onclick="unlockBaker5()">Cookie Factory</div>
+      <div id="hire5" class="Hire5">Chemist</div>
+      <div id="upgrade5" class="Upgrade5" onclick="unlockUpgrade5()">Expansion 3</div>
+      <div id="Text1" class="Text1"><span id="leftSpan1" class="LeftSpan">$2.000</span><span id="rightSpan1" class="RightSpan">Supports 5 Students</span></div>
+      <div id="Text2" class="Text2"><span id="leftSpan2" class="LeftSpan">$100.000</span><span id="rightSpan2" class="RightSpan" >Supports 10 Grandmas</span></div>
+      <div id="Text3" class="Text3"><span id="leftSpan3" class="LeftSpan">$1.000.000</span><span id="rightSpan3" class="RightSpan">Supports 30 Bakers</span></div>
+      <div id="Text4" class="Text4"><span id="leftSpan4" class="LeftSpan">$30.000.000</span><span id="rightSpan4" class="RightSpan">Supports 40 Tribal Cooks</span></div>
+      <div id="Text5" class="Text5"><span id="leftSpan5" class="LeftSpan">$100.000.000</span><span id="rightSpan5" class="RightSpan">Supports 45 Loyal Workers</span></div>
     </div>
     <div class="right">
       <div class="Dealer">
         <img src="Grandma.png" height="139px">
+        <span id="recruiterAmount"></span>
       </div>
       <div id="Baker1" class="Baker1">
         <img id="Baker1image" src="lock_symbol.PNG" height="139px">
@@ -85,12 +89,12 @@
         <img id="Baker5image" src="lock_symbol.PNG" height="139px">
         <span id="baker5Amount"></span>
       </div>
-      <div class="DealerDescription"><span id="dealerDescription">0 / 1000 Sellers </span><button id="buyDealer" onclick="buyDealer()">$1000&ensp;Buy</button></div>
+      <div class="DealerDescription"><span id="dealerDescription">0 / 1000 Sellers </span><button id="buyDealer" onclick="buySeller()">$1000&ensp;Buy</button></div>
       <div  class="Baker1Description"><span id="baker1Description">locked</span><button id="buyBaker1" onclick="buyBaker1()">$500&ensp;Buy</button></div>
       <div class="Baker2Description"><span id="baker2Description">locked</span><button id="buyBaker2" onclick="buyBaker2()">$5000&ensp;Buy</button></div>
       <div class="Baker3Description"><span id="baker3Description">locked</span><button id="buyBaker3" onclick="buyBaker3()">$50000&ensp;Buy</button></div>
-      <div class="Baker4Description">locked</div>
-      <div class="Baker5Description">locked</div>
+      <div class="Baker4Description"><span id="baker4Description">locked</span><button id="buyBaker4" onclick="buyBaker4()">$50000&ensp;Buy</button></div>
+      <div class="Baker5Description"><span id="baker5Description">locked</span><button id="buyBaker5" onclick="buyBaker5()">$90000&ensp;Buy</button></div>
     </div>
   </div>
 </body>
