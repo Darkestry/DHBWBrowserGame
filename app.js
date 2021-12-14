@@ -1,6 +1,6 @@
 let cookies = 0;  
 let money = 0;
-let purity = 0.2;
+let quality = 0.2;
 let sellers = 0;
 let trailers = 0;
 let houses = 0;
@@ -14,9 +14,11 @@ let factories = 0;
 let loyalWorkers = 0;
 let clickMultiplier = 1;
 let sellingRateMultiplier = 1;
+
 let arrow = document.getElementById("arrow")
 
 let recruiterAmount = document.getElementById("recruiterAmount");
+
 let baker1Amount = document.getElementById("baker1Amount");
 let baker2Amount = document.getElementById("baker2Amount");
 let baker3Amount = document.getElementById("baker3Amount");
@@ -34,25 +36,46 @@ let upgrade2 = document.getElementById("upgrade2");
 let upgrade3 = document.getElementById("upgrade3");
 let upgrade4 = document.getElementById("upgrade4");
 let upgrade5 = document.getElementById("upgrade5");
+let upgrade6 = document.getElementById("upgrade6");
+let upgrade7 = document.getElementById("upgrade7");
 
 let leftSpan1 = document.getElementById("leftSpan1");
 let leftSpan2 = document.getElementById("leftSpan2");
 let leftSpan3 = document.getElementById("leftSpan3");
+let leftSpan4 = document.getElementById("leftSpan4");
+let leftSpan5 = document.getElementById("leftSpan5");
+let leftSpan6 = document.getElementById("leftSpan6");
+let leftSpan7 = document.getElementById("leftSpan7");
+
 let rightSpan1 = document.getElementById("rightSpan1");
 let rightSpan2 = document.getElementById("rightSpan2");
 let rightSpan3 = document.getElementById("rightSpan3");
+let rightSpan4 = document.getElementById("rightSpan4");
+let rightSpan5 = document.getElementById("rightSpan5");
+let rightSpan6 = document.getElementById("rightSpan6");
+let rightSpan7 = document.getElementById("rightSpan7");
+
+let text6 = document.getElementById("Text6");
+let text7 = document.getElementById("Text7");
+
 document.getElementById("buyBaker1").style.display = "none";
 document.getElementById("buyBaker2").style.display = "none";
 document.getElementById("buyBaker3").style.display = "none";
 document.getElementById("buyBaker4").style.display = "none";
 document.getElementById("buyBaker5").style.display = "none";
-toggleSelection("buy")
+
+toggleSelection("buy");
+
 arrow.style.display = "none";
+
 baker1Amount.style.display = "none";
 baker2Amount.style.display = "none";
 baker3Amount.style.display = "none";
 baker4Amount.style.display = "none";
 baker5Amount.style.display = "none";
+
+upgrade6.style.display = "none";
+upgrade7.style.display = "none";
 
 let elapsed; // framerate of window object in milliseconds
 let cookiesPerFrame;
@@ -61,7 +84,7 @@ function update() {
     document.getElementById("cookiecount").innerText = Math.round(cookies) + " Cookies";
     document.getElementById("cookierate").innerText = Math.round(((students * 0.4) + (grandmas * 4.4) + (bakers * 13.8) + (tribalCooks * 83.2) + (loyalWorkers * 152) + Number.EPSILON) * 10) / 10 + " Cookies/sec";
     document.getElementById("moneycount").innerText = Math.round(money) + " Dollars";
-    document.getElementById("moneyrate").innerText = "$" + Math.round((20 * purity * sellers * sellingRateMultiplier + Number.EPSILON) * 10) / 10 + "/sec";
+    document.getElementById("moneyrate").innerText = "$" + Math.round((20 * quality * sellers * sellingRateMultiplier + Number.EPSILON) * 10) / 10 + "/sec";
     document.getElementById("dealerDescription").innerText = sellers + " / " + maxSellers + " Sellers"
     arrowIndicator();
 }
@@ -92,7 +115,7 @@ function add() {
 function sell() {
     if (cookies >= 1) {
         cookies -= 1;
-        money += (100 * purity);
+        money += (100 * quality);
         update();
     }
 }
@@ -114,8 +137,8 @@ function unlockBaker1() {
             baker1image.src="https://www.kindpng.com/picc/m/51-515317_curtainsider-truck-icon-big-trailer-truck-hd-png.png";
             baker1image.style.maxWidth = "100%";
             document.getElementById("Baker1").style.borderWidth = "0px";
-            purity += 0.07;
-            document.getElementById("qualitycount").innerText = Math.round(purity * 100) + "% Quality";
+            quality += 0.07;
+            document.getElementById("qualitycount").innerText = Math.round(quality * 100) + "% Quality";
             baker1Amount.style.display = "grid";
             document.getElementById("buyBaker1").style.display = "grid";
         }
@@ -137,8 +160,8 @@ function unlockBaker2() {
             baker2image.src="house.png";
             baker2image.style.maxWidth = "100%";
             document.getElementById("Baker2").style.borderWidth = "0px";
-            purity += 0.03;
-            document.getElementById("qualitycount").innerText = Math.round(purity * 100) + "% Quality";
+            quality += 0.03;
+            document.getElementById("qualitycount").innerText = Math.round(quality * 100) + "% Quality";
             baker2Amount.style.display = "grid";
             document.getElementById("buyBaker2").style.display = "grid";
         }
@@ -160,8 +183,8 @@ function unlockBaker3() {
             baker3image.src="Bakery.png";
             baker3image.style.maxWidth = "100%";
             document.getElementById("Baker3").style.borderWidth = "0px";
-            purity += 0.06;
-            document.getElementById("qualitycount").innerText = Math.round(purity * 100) + "% Quality";
+            quality += 0.06;
+            document.getElementById("qualitycount").innerText = Math.round(quality * 100) + "% Quality";
             baker3Amount.style.display = "grid";
             document.getElementById("buyBaker3").style.display = "grid";
         }
@@ -183,8 +206,8 @@ function unlockBaker4() {
             baker4image.src="island.jpg";
             baker4image.style.maxWidth = "100%";
             document.getElementById("Baker4").style.borderWidth = "0px";
-            purity += 0.02;
-            document.getElementById("qualitycount").innerText = Math.round(purity * 100) + "% Quality";
+            quality += 0.02;
+            document.getElementById("qualitycount").innerText = Math.round(quality * 100) + "% Quality";
             baker4Amount.style.display = "grid";
             document.getElementById("buyBaker4").style.display = "grid";
         }
@@ -206,8 +229,8 @@ function unlockBaker5() {
             baker5image.src="factory.png";
             baker5image.style.maxWidth = "100%";
             document.getElementById("Baker5").style.borderWidth = "0px";
-            purity += 0.02;
-            document.getElementById("qualitycount").innerText = Math.round(purity * 100) + "% Quality";
+            quality += 0.02;
+            document.getElementById("qualitycount").innerText = Math.round(quality * 100) + "% Quality";
             baker5Amount.style.display = "grid";
             document.getElementById("buyBaker5").style.display = "grid";
         }
@@ -324,6 +347,40 @@ function unlockUpgrade5() {
     update();
 }
 
+function unlockUpgrade6() {
+    if (cookies >= 100000) {
+        cookies -= 100000;
+        let choices = Math.floor(Math.random() * 100);
+        if (choices < 75) {
+            quality += 0.05;
+            upgrade5.setAttribute("onClick", "return false");
+            upgrade5.style.backgroundColor = "#0d300c";
+            upgrade5.style.textDecoration = "line-through";
+        } else {
+            console.log("Upgrade unsuccessful", choices)
+        }
+        playAudio("buy4");
+    }
+    update();
+}
+
+function unlockUpgrade7() {
+    if (cookies >= 10000000) {
+        cookies -= 10000000;
+        let choices = Math.floor(Math.random() * 100);
+        if (choices < 50) {
+            quality += 0.05;
+            upgrade5.setAttribute("onClick", "return false");
+            upgrade5.style.backgroundColor = "#0d300c";
+            upgrade5.style.textDecoration = "line-through";
+        } else {
+            console.log("Upgrade unsuccessful", choices)
+        }
+        playAudio("buy4");
+    }
+    update();
+}
+
 /* Sellers and bakers section */
 function buySeller() {
     if (money >= 1000 && sellers < maxSellers) {
@@ -393,13 +450,13 @@ function autoSell() {
     if (minimum < 1) {
         minimum = 1;
     }
-    if (sellers > 0 && cookies * sellingRateMultiplier >= purity / (1000 / elapsed)) {
+    if (sellers > 0 && cookies * sellingRateMultiplier >= quality / (1000 / elapsed)) {
         if (cookies < sellers / 5){
             cookies -= (0.2 * sellingRateMultiplier) / (1000  / (elapsed * sellers));
-            money += (20 * purity * sellers * sellingRateMultiplier) / (1000 / elapsed);
+            money += (20 * quality * sellers * sellingRateMultiplier) / (1000 / elapsed);
         } else {
             cookies -= (0.2 * minimum * sellingRateMultiplier) / (1000 / elapsed);
-            money += (20 * purity * minimum * sellingRateMultiplier) / (1000 / elapsed);
+            money += (20 * quality * minimum * sellingRateMultiplier) / (1000 / elapsed);
         }
     }
 }
@@ -443,18 +500,22 @@ function toggleSelection(toggle) {
         upgrade3.style.display = "none";
         upgrade4.style.display = "none";
         upgrade5.style.display = "none";
+        upgrade6.style.display = "none";
+        upgrade7.style.display = "none";
         hire1.style.display = "grid";
         hire2.style.display = "grid";
         hire3.style.display = "grid";
         hire4.style.display = "grid";
         hire5.style.display = "grid";
-        leftSpan1.innerText = "$500.000"
-        leftSpan2.innerText = "$500.000.000"
-        leftSpan3.innerText = "$1.500.000.000"
-        leftSpan4.innerText = "$50.000.000.000"
-        leftSpan5.innerText = "$28 Trillion"
+        leftSpan1.innerText = "$500.000";
+        leftSpan2.innerText = "$500.000.000";
+        leftSpan3.innerText = "$1.500.000.000";
+        leftSpan4.innerText = "$50.000.000.000";
+        leftSpan5.innerText = "$28 Trillion";
+        leftSpan6.style.display = "none";
+        leftSpan7.style.display = "none";
         rightSpan1.innerText = "Hires sellers"
-        rightSpan2.innerText = "Temporarily stops sellers"
+        rightSpan2.innerText = "Temporarily stops sellers";
         rightSpan2.style.marginLeft = "115px";
         rightSpan3.innerText = "Hires bakers in bulk"
         rightSpan3.style.marginLeft = "105px";
@@ -462,6 +523,10 @@ function toggleSelection(toggle) {
         rightSpan4.style.marginLeft = "90px";
         rightSpan5.innerText = "Increases quality"
         rightSpan5.style.marginLeft = "150px";
+        rightSpan6.style.display = "none";
+        rightSpan7.style.display = "none";
+        text6.style.display = "none";
+        text7.style.display = "none";
     } else if (toggle == "buy") {
         hire1.style.display = "none";
         hire2.style.display = "none";
@@ -473,21 +538,29 @@ function toggleSelection(toggle) {
         upgrade3.style.display = "none";
         upgrade4.style.display = "none";
         upgrade5.style.display = "none";
-        leftSpan1.innerText = "$2.000"
-        leftSpan2.innerText = "$100.000"
-        leftSpan3.innerText = "$1.000.000"
-        leftSpan4.innerText = "$30.000.000"
-        leftSpan5.innerText = "$100.000.000"
-        rightSpan1.innerText = "Supports 5 Students"
+        upgrade6.style.display = "none";
+        upgrade7.style.display = "none";
+        leftSpan1.innerText = "$2.000";
+        leftSpan2.innerText = "$100.000";
+        leftSpan3.innerText = "$1.000.000";
+        leftSpan4.innerText = "$30.000.000";
+        leftSpan5.innerText = "$100.000.000";
+        leftSpan6.style.display = "none";
+        leftSpan7.style.display = "none";
+        rightSpan1.innerText = "Supports 5 Students";
         rightSpan1.style.marginLeft = "150px";
-        rightSpan2.innerText = "Supports 10 Grandmas"
+        rightSpan2.innerText = "Supports 10 Grandmas";
         rightSpan2.style.marginLeft = "130px";
-        rightSpan3.innerText = "Supports 30 Bakers"
+        rightSpan3.innerText = "Supports 30 Bakers";
         rightSpan3.style.marginLeft = "115px";
-        rightSpan4.innerText = "Supports 40 Tribal Cooks"
+        rightSpan4.innerText = "Supports 40 Tribal Cooks";
         rightSpan4.style.marginLeft = "98px";
-        rightSpan5.innerText = "Supports 45 Loyal Workers"
+        rightSpan5.innerText = "Supports 45 Loyal Workers";
         rightSpan5.style.marginLeft = "93px";
+        rightSpan6.style.display = "none";
+        rightSpan7.style.display = "none";
+        text6.style.display = "none";
+        text7.style.display = "none";
     } else if (toggle == "upgrade") {
         hire1.style.display = "none";
         hire2.style.display = "none";
@@ -499,21 +572,35 @@ function toggleSelection(toggle) {
         upgrade3.style.display = "grid";
         upgrade4.style.display = "grid";
         upgrade5.style.display = "grid";
-        leftSpan1.innerText = "50 C"
-        leftSpan2.innerText = "20.000 C"
-        leftSpan3.innerText = "40.000 C"
-        leftSpan4.innerText = "500.000 C"
-        leftSpan5.innerText = "60.000.000 C"
-        rightSpan1.innerText = "Doubles click production"
+        upgrade6.style.display = "grid";
+        upgrade7.style.display = "grid";
+        text6.style.display = "inline";
+        text7.style.display = "inline";
+        leftSpan1.innerText = "50 C";
+        leftSpan2.innerText = "20.000 C";
+        leftSpan3.innerText = "40.000 C";
+        leftSpan4.innerText = "500.000 C";
+        leftSpan5.innerText = "60.000.000 C";
+        leftSpan6.innerText = "100.000 C";
+        leftSpan7.innerText = "10.000.000 C";
+        leftSpan6.style.display = "inline";
+        leftSpan7.style.display = "inline";
+        rightSpan1.innerText = "Doubles click production";
         rightSpan1.style.marginLeft = "150px";
-        rightSpan2.innerText = "Increases max. sellers to 4.000"
+        rightSpan2.innerText = "Increases max. sellers to 4.000";
         rightSpan2.style.marginLeft = "120px";
-        rightSpan3.innerText = "Selling rate + 10 %"
+        rightSpan3.innerText = "Selling rate + 10 %";
         rightSpan3.style.marginLeft = "115px";
-        rightSpan4.innerText = "Increases max. sellers to 500.000"
+        rightSpan4.innerText = "Increases max. sellers to 500.000";
         rightSpan4.style.marginLeft = "105px";
-        rightSpan5.innerText = "Increases max. sellers to 500.000.000"
+        rightSpan5.innerText = "Increases max. sellers to 500.000.000";
         rightSpan5.style.marginLeft = "80px";
+        rightSpan6.style.display = "inline";
+        rightSpan6.innerText = "Increases quality by 5 %";
+        rightSpan6.style.marginLeft = "110px";
+        rightSpan7.style.display = "inline";
+        rightSpan7.innerText = "Increases quality by 5 %";
+        rightSpan7.style.marginLeft = "85px";
     }
 }
 
@@ -521,13 +608,13 @@ function upgrade() {
     var e = document.getElementById("upgrade");
     highlight(e);
     toggleSelection("upgrade");
-    playAudio("buy3")
+    playAudio("buy3");
 }
 
 function achievements() {
     var e = document.getElementById("achievements");
     highlight(e);
-    playAudio("buy3")
+    playAudio("buy3");
 }
 
 function highlight(element) {

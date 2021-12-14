@@ -160,7 +160,7 @@
 .Upgrades {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: minmax(60px, 60px) 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: minmax(60px, 60px) 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   gap: 3px 2px;
   grid-auto-flow: row;
   grid-template-areas:
@@ -170,7 +170,8 @@
     "Buy3 Text3 Text3 Text3"
     "Buy4 Text4 Text4 Text4"
     "Buy5 Text5 Text5 Text5"
-    "Upgrade6 Text6 Text6 Text6";
+    "Upgrade6 Text6 Text6 Text6"
+    "Upgrade7 Text7 Text7 Text7";
   grid-area: Upgrades;
   font-family: "Cotton Butter";
   font-size: 25px;
@@ -209,7 +210,7 @@
 
 .Buy1 { grid-area: Buy1; background-color: #268824;}
 
-.Buy1:hover, .Buy2:hover, .Buy3:hover, .Buy4:hover, .Buy5:hover, .Hire1:hover, .Hire2:hover, .Hire3:hover, .Hire4:hover, .Hire5:hover, .Upgrade1:hover, .Upgrade2:hover, .Upgrade3:hover, .Upgrade4:hover, .Upgrade5:hover {
+.Buy1:hover, .Buy2:hover, .Buy3:hover, .Buy4:hover, .Buy5:hover, .Hire1:hover, .Hire2:hover, .Hire3:hover, .Hire4:hover, .Hire5:hover, .Upgrade1:hover, .Upgrade2:hover, .Upgrade3:hover, .Upgrade4:hover, .Upgrade5:hover, .Upgrade6:hover, .Upgrade7:hover {
   background-color: lawngreen;
 }
 
@@ -241,6 +242,10 @@
 
 .Upgrade5 { background-color: #268824; grid-row: 6; grid-column: 1;}
 
+.Upgrade6 { background-color: #268824; grid-row: 7; grid-column: 1;}
+
+.Upgrade7 { background-color: #268824; grid-row: 8; grid-column: 1;}
+
 .Text1 { grid-area: Text1; background-color: #000000; color: white; font-size: 25px; display: inline;}
 
 .Text2 { grid-area: Text2; background-color: #000000; color: white; display: inline;}
@@ -251,7 +256,9 @@
 
 .Text5 { grid-area: Text5; background-color: #000000; color: white; display: inline;}
 
-.Text6 { grid-area: Text6; background-color: #000000; color: white; display: inline !important;}
+.Text6 { grid-area: Text6; background-color: #000000; color: white; display: inline;}
+
+.Text7 { grid-area: Text7; background-color: #000000; color: white; display: inline;}
 
 .LeftSpan {
   display: inline;
@@ -280,10 +287,6 @@
 
 #rightSpan5 {
   margin-left: 95px;
-}
-
-#rightSpan6 {
-  margin-left: 80px;
 }
 
 .right {
