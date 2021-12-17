@@ -1,16 +1,34 @@
 <!DOCTYPE html> 
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US"> 
 <head>
+<link rel="shortcut icon" href="#">
 <link rel="stylesheet" href="styles.css">
 <meta name="Description" content="Build your empire."/> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/> 
 <meta name="Distribution" content="Global"/> 
 <meta name="Robots" content="index,follow"/> 
-<meta name="viewport" content="user-scalable=no"/>
+<meta name="viewport" content="width=device-width", initial-scale="1.0"/>
 <title>Leon</title> 
 <link rel="stylesheet" href="styles.css" type="text/css" media="screen, projection" /> 
 </head>
 <body>
+  <div class="ToastContainer">
+    <div id="toast1" class="Toast">Upgrade successful</div>
+    <div id="toast2" class="Toast">Requires 1 achievement to unlock</div>
+    <div id="toast3" class="Toast">Requires 2 achievements to unlock</div>
+    <div id="toast4" class="Toast">Requires 3 achievements to unlock</div>
+    <div id="toast5" class="Toast">Requires 4 achievements to unlock</div>
+    <div id="toast6" class="Toast">Upgrade unsuccessful</div>
+    <div id="toast7" class="Toast">New achievement unlocked!</div>
+    <div id="toast8" class="Toast">Trailer unlocked!</div>
+    <div id="toast9" class="Toast">House unlocked!</div>
+    <div id="toast10" class="Toast">Bakery unlocked!</div>
+    <div id="toast11" class="Toast">Island unlocked!</div>
+    <div id="toast12" class="Toast">Cookie Factory unlocked!</div>
+    <div id="toast13" class="Toast">Recruiter unlocked!</div>
+    <div id="toast14" class="Toast">Not yet implemented</div>
+    <div id="toast15" class="Toast">saved</div>
+  </div>
   <div class="container">
     <div class="Resources">
       <div class="Crystal">
@@ -46,18 +64,23 @@
       <div id="buy1" class="Buy1" onclick="unlockBaker1()">Trailer</div>
       <div id="hire1" class="Hire1" onclick="buyRecruiter()">Recruiter</div>
       <div id="upgrade1" class="Upgrade1" onclick="unlockUpgrade1()">Double Click</div>
+      <div id="achievement1" class="Achievement1">Millionaire</div>
       <div id="buy2" class="Buy2" onclick="unlockBaker2()">House</div>
-      <div id="hire2" class="Hire2">Police Officer</div>
+      <div id="hire2" class="Hire2" onclick="buyPoliceOfficer()">Police Officer</div>
       <div id="upgrade2" class="Upgrade2" onclick="unlockUpgrade2()">Expansion 1</div>
+      <div id="achievement2" class="Achievement2">Billionaire</div>
       <div id="buy3" class="Buy3" onclick="unlockBaker3()">Bakery</div>
-      <div id="hire3" class="Hire3">Master Baker</div>
+      <div id="hire3" class="Hire3" onclick="buyMasterBaker()">Master Baker</div>
       <div id="upgrade3" class="Upgrade3" onclick="unlockUpgrade3()">Cookiematics</div>
+      <div id="achievement3" class="Achievement3">One Day</div>
       <div id="buy4" class="Buy4" onclick="unlockBaker4()">Island</div>
-      <div id="hire4" class="Hire4">Banker</div>
+      <div id="hire4" class="Hire4" onclick="buyBanker()">Banker</div>
       <div id="upgrade4" class="Upgrade4" onclick="unlockUpgrade4()">Expansion 2</div>
+      <div id="achievement4" class="Achievement4">Clickmaniac</div>
       <div id="buy5" class="Buy5" onclick="unlockBaker5()">Cookie Factory</div>
-      <div id="hire5" class="Hire5">Chemist</div>
+      <div id="hire5" class="Hire5" onclick="buyChemist()">Chemist</div>
       <div id="upgrade5" class="Upgrade5" onclick="unlockUpgrade5()">Expansion 3</div>
+      <div id="achievement5" class="Achievement5">Easy Money</div>
       <div id="upgrade6" class="Upgrade6" onclick="unlockUpgrade6()">Research 1</div>
       <div id="upgrade7" class="Upgrade7" onclick="unlockUpgrade7()">Research 2</div>
       <div id="Text1" class="Text1"><span id="leftSpan1" class="LeftSpan">$2.000</span><span id="rightSpan1" class="RightSpan">Supports 5 Students</span></div>

@@ -14,7 +14,7 @@ let factories = 0;
 let loyalWorkers = 0;
 let clickMultiplier = 1;
 let sellingRateMultiplier = 1;
-
+let recruiters = 0;
 let arrow = document.getElementById("arrow")
 
 let recruiterAmount = document.getElementById("recruiterAmount");
@@ -38,6 +38,12 @@ let upgrade4 = document.getElementById("upgrade4");
 let upgrade5 = document.getElementById("upgrade5");
 let upgrade6 = document.getElementById("upgrade6");
 let upgrade7 = document.getElementById("upgrade7");
+
+let achievement1 = document.getElementById("achievement1");
+let achievement2 = document.getElementById("achievement2");
+let achievement3 = document.getElementById("achievement3");
+let achievement4 = document.getElementById("achievement4");
+let achievement5 = document.getElementById("achievement5");
 
 let leftSpan1 = document.getElementById("leftSpan1");
 let leftSpan2 = document.getElementById("leftSpan2");
@@ -79,13 +85,34 @@ upgrade7.style.display = "none";
 
 let elapsed; // framerate of window object in milliseconds
 let cookiesPerFrame;
-
+let totalMoneyEarned = 0;
+let totalPlayTime = 0;
+let unlockedAchievementsCount = 0;
+let clicksOnCookie = 0;
 function update() {
     document.getElementById("cookiecount").innerText = Math.round(cookies) + " Cookies";
     document.getElementById("cookierate").innerText = Math.round(((students * 0.4) + (grandmas * 4.4) + (bakers * 13.8) + (tribalCooks * 83.2) + (loyalWorkers * 152) + Number.EPSILON) * 10) / 10 + " Cookies/sec";
     document.getElementById("moneycount").innerText = Math.round(money) + " Dollars";
     document.getElementById("moneyrate").innerText = "$" + Math.round((20 * quality * sellers * sellingRateMultiplier + Number.EPSILON) * 10) / 10 + "/sec";
-    document.getElementById("dealerDescription").innerText = sellers + " / " + maxSellers + " Sellers"
+    document.getElementById("dealerDescription").innerText = sellers + " / " + maxSellers + " Sellers";
+    document.getElementById("qualitycount").innerText = Math.round(quality * 100) + "% Quality";
+    if (totalMoneyEarned >= 1000000 && achievementsDict[1] === false) {
+        unlockAchievement(1);
+    }
+    if (totalMoneyEarned >= 1000000000 && achievementsDict[2] === false) {
+        unlockAchievement(2);
+    }
+    totalPlayTime += (elapsed / 100);
+    if (totalPlayTime >= 86400 && achievementsDict[3] === false) {
+        unlockAchievement(3);
+    }
+    if (clicksOnCookie == 10000 && achievementsDict[4] === false) {
+        unlockAchievement(4);
+    }
+    if (20 * quality * sellers * sellingRateMultiplier >= 1000000 && achievementsDict[5] === false) {
+        unlockAchievement(5);
+    }
+    unlockedAchievementsCount = Object.values(achievementsDict).filter(x => x == true).length;
     arrowIndicator();
 }
 
@@ -107,8 +134,13 @@ function arrowIndicator() {
     }
 }
 
+
 function add() {
     cookies += clickMultiplier;
+    clicksOnCookie += 1;
+    if (clicksOnCookie == 10000) {
+        unlockAchievement("4");
+    }
     update();
 }
 
@@ -116,6 +148,7 @@ function sell() {
     if (cookies >= 1) {
         cookies -= 1;
         money += (100 * quality);
+        totalMoneyEarned += (100 * quality);
         update();
     }
 }
@@ -126,19 +159,20 @@ function playAudio(audio) {
         clickdown.load();
         clickdown.play();
 } 
-/* Buy section, available under category "Buy" */
-const baker1description = document.getElementById("baker1Description");
-const baker1image = document.getElementById("Baker1image");
+
+// Buy section, available under category "Buy"
+let baker1description = document.getElementById("baker1Description");
+let baker1image = document.getElementById("Baker1image");
 
 function unlockBaker1() {
     if (money >= 2000) {
         money -= 2000;
         if(trailers == 0){
+            showToast(document.getElementById("toast8"));
             baker1image.src="https://www.kindpng.com/picc/m/51-515317_curtainsider-truck-icon-big-trailer-truck-hd-png.png";
             baker1image.style.maxWidth = "100%";
             document.getElementById("Baker1").style.borderWidth = "0px";
             quality += 0.07;
-            document.getElementById("qualitycount").innerText = Math.round(quality * 100) + "% Quality";
             baker1Amount.style.display = "grid";
             document.getElementById("buyBaker1").style.display = "grid";
         }
@@ -157,11 +191,11 @@ function unlockBaker2() {
     if (money >= 100000) {
         money -= 100000;
         if(houses == 0){
+            showToast(document.getElementById("toast9"));
             baker2image.src="house.png";
             baker2image.style.maxWidth = "100%";
             document.getElementById("Baker2").style.borderWidth = "0px";
             quality += 0.03;
-            document.getElementById("qualitycount").innerText = Math.round(quality * 100) + "% Quality";
             baker2Amount.style.display = "grid";
             document.getElementById("buyBaker2").style.display = "grid";
         }
@@ -180,11 +214,11 @@ function unlockBaker3() {
     if (money >= 1000000) {
         money -= 1000000;
         if(bakeries == 0){
+            showToast(document.getElementById("toast10"));
             baker3image.src="Bakery.png";
             baker3image.style.maxWidth = "100%";
             document.getElementById("Baker3").style.borderWidth = "0px";
             quality += 0.06;
-            document.getElementById("qualitycount").innerText = Math.round(quality * 100) + "% Quality";
             baker3Amount.style.display = "grid";
             document.getElementById("buyBaker3").style.display = "grid";
         }
@@ -203,11 +237,11 @@ function unlockBaker4() {
     if (money >= 30000000) {
         money -= 30000000;
         if(islands == 0){
+            showToast(document.getElementById("toast11"));
             baker4image.src="island.jpg";
             baker4image.style.maxWidth = "100%";
             document.getElementById("Baker4").style.borderWidth = "0px";
             quality += 0.02;
-            document.getElementById("qualitycount").innerText = Math.round(quality * 100) + "% Quality";
             baker4Amount.style.display = "grid";
             document.getElementById("buyBaker4").style.display = "grid";
         }
@@ -226,11 +260,11 @@ function unlockBaker5() {
     if (money >= 100000000) {
         money -= 100000000;
         if(factories == 0){
+            showToast(document.getElementById("toast12"));
             baker5image.src="factory.png";
             baker5image.style.maxWidth = "100%";
             document.getElementById("Baker5").style.borderWidth = "0px";
             quality += 0.02;
-            document.getElementById("qualitycount").innerText = Math.round(quality * 100) + "% Quality";
             baker5Amount.style.display = "grid";
             document.getElementById("buyBaker5").style.display = "grid";
         }
@@ -241,14 +275,15 @@ function unlockBaker5() {
     }
     update();
 }
-/* Hire section, available under category "hire" */
-let recruiters = 0;
+
+// Hire section, available under category "Hire"
 recruiterAmount.style.display = "none";
 
 function buyRecruiter() {
     if (money >= 500000){
         money -= 500000;
         if (recruiters == 0) {
+            showToast(document.getElementById("toast13"));
             recruiterAmount.style.display = "grid";
         }
         recruiters += 1;
@@ -256,6 +291,22 @@ function buyRecruiter() {
         playAudio("buy3");
     }
     update();
+}
+
+function buyPoliceOfficer() {
+    showToast(document.getElementById("toast14"));
+}
+
+function buyMasterBaker() {
+    showToast(document.getElementById("toast14"));
+}
+
+function buyBanker() {
+    showToast(document.getElementById("toast14"));
+}
+
+function buyChemist() {
+    showToast(document.getElementById("toast14"));
 }
 
 let temp_sellers = 0;
@@ -270,10 +321,22 @@ function autoRecruit() {
         }
     }
 }
-/* Upgrade section, available under category "Upgrade" */
+
+// Upgrade section, available under category "Upgrade"
+let upgradesDict = {
+    1: false, // Double Click
+    2: false, // Expansion 1
+    3: false, // Cookiematics
+    4: false, // Expansion 2
+    5: false, // Expansion 3
+    6: false, // Research 1
+    7: false // Research 2
+}
 
 function unlockUpgrade1() {
     if (cookies >= 50) {
+        showToast(document.getElementById("toast1"));
+        upgradesDict[1] = true;
         cookies -= 50;
         clickMultiplier += 1;
         upgrade1.setAttribute("onClick", "return false");
@@ -289,12 +352,14 @@ function unlockUpgrade2() {
         cookies -= 20000;
         let choices = Math.floor(Math.random() * 100);
         if (choices < 50) {
+            showToast(document.getElementById("toast1"));
+            upgradesDict[2] = true;
             maxSellers += 3000;
             upgrade2.setAttribute("onClick", "return false");
             upgrade2.style.backgroundColor = "#0d300c";
             upgrade2.style.textDecoration = "line-through";
         } else {
-            console.log("Upgrade unsuccessful");
+            showToast(document.getElementById("toast6"));
         }
         playAudio("buy4");
     }
@@ -303,6 +368,8 @@ function unlockUpgrade2() {
 
 function unlockUpgrade3() {
     if (cookies >= 40000) {
+        showToast(document.getElementById("toast1"));
+        upgradesDict[3] = true;
         cookies -= 40000;
         sellingRateMultiplier += 0.1;
         upgrade3.setAttribute("onClick", "return false");
@@ -314,35 +381,47 @@ function unlockUpgrade3() {
 }
 
 function unlockUpgrade4() {
-    if (cookies >= 500000) {
-        cookies -= 500000;
-        let choices = Math.floor(Math.random() * 100);
-        if (choices < 20) {
-            maxSellers += 496000;
-            upgrade4.setAttribute("onClick", "return false");
-            upgrade4.style.backgroundColor = "#0d300c";
-            upgrade4.style.textDecoration = "line-through";
-        } else {
-            console.log("Upgrade unsuccessful", choices)
+    if (unlockedAchievementsCount >= 2) {
+        if (cookies >= 500000) {
+            cookies -= 500000;
+            let choices = Math.floor(Math.random() * 100);
+            if (choices < 20) {
+                showToast(document.getElementById("toast1"));
+                upgradesDict[4] = true;
+                maxSellers += 496000;
+                upgrade4.setAttribute("onClick", "return false");
+                upgrade4.style.backgroundColor = "#0d300c";
+                upgrade4.style.textDecoration = "line-through";
+            } else {
+                showToast(document.getElementById("toast6"));
+            }
+            playAudio("buy4");
         }
-        playAudio("buy4");
+    } else {
+        showToast(document.getElementById("toast3"));
     }
     update();
 }
 
 function unlockUpgrade5() {
-    if (cookies >= 60000000) {
-        cookies -= 60000000;
-        let choices = Math.floor(Math.random() * 100);
-        if (choices < 10) {
-            maxSellers += 499500000;
-            upgrade5.setAttribute("onClick", "return false");
-            upgrade5.style.backgroundColor = "#0d300c";
-            upgrade5.style.textDecoration = "line-through";
-        } else {
-            console.log("Upgrade unsuccessful", choices)
+    if (unlockedAchievementsCount >= 3) {
+        if (cookies >= 60000000) {
+            cookies -= 60000000;
+            let choices = Math.floor(Math.random() * 100);
+            if (choices < 10) {
+                showToast(document.getElementById("toast1"));
+                upgradesDict[5] = true;
+                maxSellers += 499500000;
+                upgrade5.setAttribute("onClick", "return false");
+                upgrade5.style.backgroundColor = "#0d300c";
+                upgrade5.style.textDecoration = "line-through";
+            } else {
+                showToast(document.getElementById("toast6"));
+            }
+            playAudio("buy4");
         }
-        playAudio("buy4");
+    } else {
+        showToast(document.getElementById("toast5"));
     }
     update();
 }
@@ -352,12 +431,14 @@ function unlockUpgrade6() {
         cookies -= 100000;
         let choices = Math.floor(Math.random() * 100);
         if (choices < 75) {
+            showToast(document.getElementById("toast1"));
+            upgradesDict[6] = true;
             quality += 0.05;
-            upgrade5.setAttribute("onClick", "return false");
-            upgrade5.style.backgroundColor = "#0d300c";
-            upgrade5.style.textDecoration = "line-through";
+            upgrade6.setAttribute("onClick", "return false");
+            upgrade6.style.backgroundColor = "#0d300c";
+            upgrade6.style.textDecoration = "line-through";
         } else {
-            console.log("Upgrade unsuccessful", choices)
+            showToast(document.getElementById("toast6"));
         }
         playAudio("buy4");
     }
@@ -369,19 +450,21 @@ function unlockUpgrade7() {
         cookies -= 10000000;
         let choices = Math.floor(Math.random() * 100);
         if (choices < 50) {
+            showToast(document.getElementById("toast1"));
+            upgradesDict[7] = true;
             quality += 0.05;
-            upgrade5.setAttribute("onClick", "return false");
-            upgrade5.style.backgroundColor = "#0d300c";
-            upgrade5.style.textDecoration = "line-through";
+            upgrade7.setAttribute("onClick", "return false");
+            upgrade7.style.backgroundColor = "#0d300c";
+            upgrade7.style.textDecoration = "line-through";
         } else {
-            console.log("Upgrade unsuccessful", choices)
+            showToast(document.getElementById("toast6"));
         }
         playAudio("buy4");
     }
     update();
 }
 
-/* Sellers and bakers section */
+// Sellers and bakers section
 function buySeller() {
     if (money >= 1000 && sellers < maxSellers) {
         money -= 1000;
@@ -454,9 +537,11 @@ function autoSell() {
         if (cookies < sellers / 5){
             cookies -= (0.2 * sellingRateMultiplier) / (1000  / (elapsed * sellers));
             money += (20 * quality * sellers * sellingRateMultiplier) / (1000 / elapsed);
+            totalMoneyEarned += (20 * quality * sellers * sellingRateMultiplier) / (1000 / elapsed);
         } else {
             cookies -= (0.2 * minimum * sellingRateMultiplier) / (1000 / elapsed);
             money += (20 * quality * minimum * sellingRateMultiplier) / (1000 / elapsed);
+            totalMoneyEarned += (20 * quality * minimum * sellingRateMultiplier) / (1000 / elapsed);
         }
     }
 }
@@ -465,9 +550,25 @@ function autoCook() {
     if(isNaN(cookies)){
         cookies = 0;
     }
-    cookies += (((0.4 * students) + (4.4 * grandmas) + (13.8 * bakers) + (83.2 * tribalCooks) + (152 * loyalWorkers)) / (1000/elapsed));
+    cookies += (((0.4 * students) + (4.4 * grandmas) + (13.8 * bakers) + (83.2 * tribalCooks) + (152 * loyalWorkers)) / (1000 / elapsed));
 }
 
+// Achievements section, available under category "Achievements"
+let achievementsDict = {
+    1: false, // Millionaire 
+    2: false, // Billionaire
+    3: false, // One Day
+    4: false, // Clickmaniac
+    5: false // Easy Money
+};
+
+function unlockAchievement(achievement) {
+    achievementsDict[achievement] = true;
+    playAudio("fortune");
+    showToast(document.getElementById("toast7"))
+}
+
+// CSS section
 const cookieimage = document.getElementById("cookieimage");
 const moneyimage = document.getElementById("moneyimage");
 
@@ -493,20 +594,39 @@ function hire() {
     playAudio("buy3")
 }
 
+function displayHireArr(parameter) {
+    let hireArr = [hire1, hire2, hire3, hire4, hire5];
+    for (let i = 0; i < hireArr.length; i++) {
+        hireArr[i].style.display = parameter;
+    }
+}
+
+function displayUpgradeArr(parameter) {
+    let upgradesArr = [upgrade1, upgrade2, upgrade3, upgrade4, upgrade5, upgrade6, upgrade7];
+    for (let i = 0; i < upgradesArr.length; i++) {
+        upgradesArr[i].style.display = parameter;
+    }
+}
+
+function displayAchievementArr(parameter) {
+    let achievementsArr = [achievement1, achievement2, achievement3, achievement4, achievement5];
+    for (let i = 0; i < achievementsArr.length; i++) {
+        achievementsArr[i].style.display = parameter;
+    }
+}
+function adjustLeftSpanMargin(parameter) {
+    let leftSpanElements = document.getElementsByClassName("LeftSpan");
+    for (let i = 0; i < leftSpanElements.length; i++) {
+        leftSpanElements[i].style.marginLeft = parameter;
+    }
+}
+
 function toggleSelection(toggle) {
     if(toggle == "hire") {
-        upgrade1.style.display = "none";
-        upgrade2.style.display = "none";
-        upgrade3.style.display = "none";
-        upgrade4.style.display = "none";
-        upgrade5.style.display = "none";
-        upgrade6.style.display = "none";
-        upgrade7.style.display = "none";
-        hire1.style.display = "grid";
-        hire2.style.display = "grid";
-        hire3.style.display = "grid";
-        hire4.style.display = "grid";
-        hire5.style.display = "grid";
+        displayUpgradeArr("none");
+        displayAchievementArr("none");
+        displayHireArr("grid");
+        adjustLeftSpanMargin("60px");
         leftSpan1.innerText = "$500.000";
         leftSpan2.innerText = "$500.000.000";
         leftSpan3.innerText = "$1.500.000.000";
@@ -514,6 +634,9 @@ function toggleSelection(toggle) {
         leftSpan5.innerText = "$28 Trillion";
         leftSpan6.style.display = "none";
         leftSpan7.style.display = "none";
+        document.querySelectorAll(".RightSpan").forEach(span => span.style.display = "inline");
+        rightSpan6.style.display = "none";
+        rightSpan7.style.display = "none";
         rightSpan1.innerText = "Hires sellers"
         rightSpan2.innerText = "Temporarily stops sellers";
         rightSpan2.style.marginLeft = "115px";
@@ -523,23 +646,13 @@ function toggleSelection(toggle) {
         rightSpan4.style.marginLeft = "90px";
         rightSpan5.innerText = "Increases quality"
         rightSpan5.style.marginLeft = "150px";
-        rightSpan6.style.display = "none";
-        rightSpan7.style.display = "none";
         text6.style.display = "none";
         text7.style.display = "none";
     } else if (toggle == "buy") {
-        hire1.style.display = "none";
-        hire2.style.display = "none";
-        hire3.style.display = "none";
-        hire4.style.display = "none";
-        hire5.style.display = "none";
-        upgrade1.style.display = "none";
-        upgrade2.style.display = "none";
-        upgrade3.style.display = "none";
-        upgrade4.style.display = "none";
-        upgrade5.style.display = "none";
-        upgrade6.style.display = "none";
-        upgrade7.style.display = "none";
+        displayHireArr("none");
+        displayUpgradeArr("none");
+        displayAchievementArr("none");
+        adjustLeftSpanMargin("60px");
         leftSpan1.innerText = "$2.000";
         leftSpan2.innerText = "$100.000";
         leftSpan3.innerText = "$1.000.000";
@@ -547,6 +660,9 @@ function toggleSelection(toggle) {
         leftSpan5.innerText = "$100.000.000";
         leftSpan6.style.display = "none";
         leftSpan7.style.display = "none";
+        document.querySelectorAll(".RightSpan").forEach(span => span.style.display = "inline");
+        rightSpan6.style.display = "none";
+        rightSpan7.style.display = "none";
         rightSpan1.innerText = "Supports 5 Students";
         rightSpan1.style.marginLeft = "150px";
         rightSpan2.innerText = "Supports 10 Grandmas";
@@ -557,23 +673,13 @@ function toggleSelection(toggle) {
         rightSpan4.style.marginLeft = "98px";
         rightSpan5.innerText = "Supports 45 Loyal Workers";
         rightSpan5.style.marginLeft = "93px";
-        rightSpan6.style.display = "none";
-        rightSpan7.style.display = "none";
         text6.style.display = "none";
         text7.style.display = "none";
     } else if (toggle == "upgrade") {
-        hire1.style.display = "none";
-        hire2.style.display = "none";
-        hire3.style.display = "none";
-        hire4.style.display = "none";
-        hire5.style.display = "none";
-        upgrade1.style.display = "grid";
-        upgrade2.style.display = "grid";
-        upgrade3.style.display = "grid";
-        upgrade4.style.display = "grid";
-        upgrade5.style.display = "grid";
-        upgrade6.style.display = "grid";
-        upgrade7.style.display = "grid";
+        displayHireArr("none");
+        displayAchievementArr("none");
+        displayUpgradeArr("grid");
+        adjustLeftSpanMargin("60px");
         text6.style.display = "inline";
         text7.style.display = "inline";
         leftSpan1.innerText = "50 C";
@@ -587,22 +693,44 @@ function toggleSelection(toggle) {
         leftSpan7.style.display = "inline";
         rightSpan1.innerText = "Doubles click production";
         rightSpan1.style.marginLeft = "150px";
+        rightSpan1.style.display = "inline";
         rightSpan2.innerText = "Increases max. sellers to 4.000";
         rightSpan2.style.marginLeft = "120px";
+        rightSpan2.style.display = "inline";
         rightSpan3.innerText = "Selling rate + 10 %";
         rightSpan3.style.marginLeft = "115px";
+        rightSpan3.style.display = "inline";
         rightSpan4.innerText = "Increases max. sellers to 500.000";
         rightSpan4.style.marginLeft = "105px";
+        rightSpan4.style.display = "inline";
         rightSpan5.innerText = "Increases max. sellers to 500.000.000";
         rightSpan5.style.marginLeft = "80px";
+        rightSpan5.style.display = "inline";
         rightSpan6.style.display = "inline";
         rightSpan6.innerText = "Increases quality by 5 %";
         rightSpan6.style.marginLeft = "110px";
         rightSpan7.style.display = "inline";
         rightSpan7.innerText = "Increases quality by 5 %";
         rightSpan7.style.marginLeft = "85px";
+    } else if (toggle == "achievements") {
+        displayUpgradeArr("none");
+        displayHireArr("none")
+        displayAchievementArr("grid");
+        adjustLeftSpanMargin("165px");
+        leftSpan1.innerText = "Make a total of one million dollars";
+        leftSpan2.innerText = "Make a total of one billion dollars";
+        leftSpan3.innerText = "Stay logged on for 24 hours total";
+        leftSpan4.innerText = "Click the big cookie 10.000 times";
+        leftSpan5.innerText = "Make one million dollars per second";
+        leftSpan6.style.display = "none";
+        leftSpan7.style.display = "none";
+        document.querySelectorAll(".RightSpan").forEach(span => span.style.display = "none");
+        text6.style.display = "none";
+        text7.style.display = "none";  
     }
 }
+
+
 
 function upgrade() {
     var e = document.getElementById("upgrade");
@@ -614,6 +742,23 @@ function upgrade() {
 function achievements() {
     var e = document.getElementById("achievements");
     highlight(e);
+    toggleSelection("achievements");
+    if (achievementsDict[1] === true) {
+        achievement1.style.backgroundColor = "#268824";
+    }
+    if (achievementsDict[2] === true) {
+        achievement2.style.backgroundColor = "#268824";
+    }
+    if (achievementsDict[3] === true) {
+        achievement3.style.backgroundColor = "#268824";
+    }
+    if (achievementsDict[4] === true) {
+        achievement4.style.backgroundColor = "#268824";
+    }
+    if (achievementsDict[5] === true) {
+        achievement5.style.backgroundColor = "#268824";
+    }
+
     playAudio("buy3");
 }
 
@@ -652,6 +797,219 @@ function highlight(element) {
     }
 }
 
+/* Toasts */
+function showToast(toast) {
+    if (toast.classList.contains("block")) {
+        return;
+    }
+    toast.removeEventListener("transitionend", removeBlockClass);
+    document.querySelector(".ToastContainer").appendChild(toast);
+    toast.classList.add("block");
+    setTimeout(function() {
+        toast.classList.add("shown");
+    }, 1);
+    setTimeout(hideToast, 5000, toast);
+}
+
+function hideToast(toast) {
+    toast.classList.remove("shown");
+    toast.addEventListener("transitionend", removeBlockClass);
+}
+
+function removeBlockClass(event) {
+    event.target.classList.remove("block");
+}
+
+/* save game */
+function saveGame() {
+    let gameSave = {
+        cookies: cookies,  
+        money: money,
+        quality: quality,
+        sellers: sellers,
+        trailers: trailers,
+        houses: houses,
+        grandmas: grandmas,
+        students: students,
+        bakers: bakers,
+        bakeries: bakeries,
+        islands: islands,
+        tribalCooks: tribalCooks,
+        factories: factories,
+        loyalWorkers: loyalWorkers,
+        clickMultiplier: clickMultiplier,
+        sellingRateMultiplier: sellingRateMultiplier,
+        recruiters: recruiters,
+        clicksOnCookie: clicksOnCookie,
+        cookiesPerFrame: cookiesPerFrame,
+        totalMoneyEarned: totalMoneyEarned,
+        totalPlayTime: totalPlayTime,
+        unlockedAchievementsCount: unlockedAchievementsCount,
+        achievementsDict: achievementsDict,
+        upgradesDict: upgradesDict,
+        maxSellers: maxSellers
+    };
+    localStorage.setItem("gameSave", JSON.stringify(gameSave));
+}
+setInterval(function () {
+    saveGame();
+    showToast(document.getElementById("toast15"));
+}, 30000); // 30000ms = 30 seconds
+
+document.addEventListener("keydown", function(event) {
+    if (event.ctrlKey && event.key == 83) {
+        event.preventDefault();
+    }
+}, false);
+
+/* load game */
+function loadGame() {
+    let savedGame = JSON.parse(localStorage.getItem("gameSave"));
+    if (typeof savedGame.cookies !== "undefined") cookies = savedGame.cookies;
+    if (typeof savedGame.money !== "undefined") money = savedGame.money;
+    if (typeof savedGame.quality !== "undefined") quality = savedGame.quality;
+    if (typeof savedGame.sellers !== "undefined") sellers = savedGame.sellers;
+    if (typeof savedGame.trailers !== "undefined") trailers = savedGame.trailers;
+    if (typeof savedGame.houses !== "undefined") houses = savedGame.houses;
+    if (typeof savedGame.grandmas !== "undefined") grandmas = savedGame.grandmas;
+    if (typeof savedGame.students !== "undefined") students = savedGame.students;
+    if (typeof savedGame.bakers !== "undefined") bakers = savedGame.bakers;
+    if (typeof savedGame.bakeries !== "undefined") bakeries = savedGame.bakeries;
+    if (typeof savedGame.islands !== "undefined") islands = savedGame.islands;
+    if (typeof savedGame.factories !== "undefined") factories = savedGame.factories;
+    if (typeof savedGame.tribalCooks !== "undefined") tribalCooks = savedGame.tribalCooks;
+    if (typeof savedGame.loyalWorkers !== "undefined") loyalWorkers = savedGame.loyalWorkers;
+    if (typeof savedGame.clickMultiplier !== "undefined") clickMultiplier = savedGame.clickMultiplier;
+    if (typeof savedGame.sellingRateMultiplier !== "undefined") sellingRateMultiplier = savedGame.sellingRateMultiplier;
+    if (typeof savedGame.recruiters !== "undefined") recruiters = savedGame.recruiters;
+    if (typeof savedGame.clicksOnCookie !== "undefined") clicksOnCookie = savedGame.clicksOnCookie;
+    if (typeof savedGame.cookiesPerFrame !== "undefined") cookiesPerFrame = savedGame.cookiesPerFrame;
+    if (typeof savedGame.totalMoneyEarned !== "undefined") totalMoneyEarned = savedGame.totalMoneyEarned;
+    if (typeof savedGame.totalPlayTime !== "undefined") totalPlayTime = savedGame.totalPlayTime;
+    if (typeof savedGame.unlockedAchievementsCount !== "undefined") unlockedAchievementsCount = savedGame.unlockedAchievementsCount;
+    if (typeof savedGame.achievementsDict !== "undefined") achievementsDict = savedGame.achievementsDict;
+    if (typeof savedGame.upgradesDict !== "undefined") upgradesDict = savedGame.upgradesDict;
+    if (typeof savedGame.maxSellers !== "undefined") maxSellers = savedGame.maxSellers;
+    for (const key of Object.keys(upgradesDict)) {
+        if (upgradesDict[key] == true) {
+            switch(key) {
+                case "1":
+                    upgrade1.setAttribute("onClick", "return false");
+                    upgrade1.style.backgroundColor = "#0d300c";
+                    upgrade1.style.textDecoration = "line-through";
+                    break;
+                case "2":
+                    upgrade2.setAttribute("onClick", "return false");
+                    upgrade2.style.backgroundColor = "#0d300c";
+                    upgrade2.style.textDecoration = "line-through";
+                    break;
+                case "3":
+                    upgrade3.setAttribute("onClick", "return false");
+                    upgrade3.style.backgroundColor = "#0d300c";
+                    upgrade3.style.textDecoration = "line-through";
+                    break;
+                case "4":
+                    upgrade4.setAttribute("onClick", "return false");
+                    upgrade4.style.backgroundColor = "#0d300c";
+                    upgrade4.style.textDecoration = "line-through";
+                    break;
+                case "5":
+                    upgrade5.setAttribute("onClick", "return false");
+                    upgrade5.style.backgroundColor = "#0d300c";
+                    upgrade5.style.textDecoration = "line-through";
+                    break;
+                case "6":
+                    upgrade6.setAttribute("onClick", "return false");
+                    upgrade6.style.backgroundColor = "#0d300c";
+                    upgrade6.style.textDecoration = "line-through";
+                    break;
+                case "7":
+                    upgrade7.setAttribute("onClick", "return false");
+                    upgrade7.style.backgroundColor = "#0d300c";
+                    upgrade7.style.textDecoration = "line-through";
+                    break;
+            }
+        }
+    }
+    for (const key of Object.keys(achievementsDict)) {
+        if (achievementsDict[key] == true) {
+            switch(key) {
+                case "1":
+                    achievement1.style.backgroundColor = "#268824";
+                    break;
+                case "2":
+                    achievement2.style.backgroundColor = "#268824";
+                    break;
+                case "3":
+                    achievement3.style.backgroundColor = "#268824";
+                    break;
+                case "4":
+                    achievement4.style.backgroundColor = "#268824";
+                    break;
+                case "5":
+                    achievement5.style.backgroundColor = "#268824";
+                    console.log("hi")
+                    break;
+            }
+        }
+    }
+    if (trailers > 0) {
+        baker1image.src="https://www.kindpng.com/picc/m/51-515317_curtainsider-truck-icon-big-trailer-truck-hd-png.png";
+        baker1image.style.maxWidth = "100%";
+        document.getElementById("Baker1").style.borderWidth = "0px";
+        baker1Amount.style.display = "grid";
+        document.getElementById("buyBaker1").style.display = "grid";
+        baker1Amount.innerText = trailers;
+        baker1description.innerText = students + " / " + (trailers * 5) + " Students";
+    }
+    if (houses > 0) {
+        baker2image.src="house.png";
+        baker2image.style.maxWidth = "100%";
+        document.getElementById("Baker2").style.borderWidth = "0px";
+        baker2Amount.style.display = "grid";
+        document.getElementById("buyBaker2").style.display = "grid";
+        baker2Amount.innerText = houses;
+        baker2description.innerText = grandmas + " / " + (houses * 10) + " Grandmas";
+    }
+    if (bakeries > 0) {
+        baker3image.src="Bakery.png";
+        baker3image.style.maxWidth = "100%";
+        document.getElementById("Baker3").style.borderWidth = "0px";
+        baker3Amount.style.display = "grid";
+        document.getElementById("buyBaker3").style.display = "grid";
+        baker3Amount.innerText = bakeries;
+        baker3description.innerText = bakers + " / " + (bakeries * 30) + " Bakers";
+    }
+    if (islands > 0) {
+        baker4image.src="island.jpg";
+        baker4image.style.maxWidth = "100%";
+        document.getElementById("Baker4").style.borderWidth = "0px";
+        baker4Amount.style.display = "grid";
+        document.getElementById("buyBaker4").style.display = "grid";
+        baker4Amount.innerText = islands;
+        baker4description.innerText = tribalCooks + " / " + (islands * 40) + " Tribal Cooks";
+    }
+    if (factories > 0) {
+        baker5image.src="factory.png";
+        baker5image.style.maxWidth = "100%";
+        document.getElementById("Baker5").style.borderWidth = "0px";
+        baker5Amount.style.display = "grid";
+        document.getElementById("buyBaker5").style.display = "grid";
+        baker5Amount.innerText = factories;
+        baker5description.innerText = loyalWorkers + " / " + (factories * 45) + " Loyal Workers";
+    }
+    if (recruiters > 0) {
+        recruiterAmount.style.display = "grid";
+        recruiterAmount.innerText = recruiters;
+    }
+}
+
+window.onload = function () {
+    loadGame();
+    update();
+};
+
+/* Update values on every frame rendered */
 let lastTime;
 
 function timer(now) {
@@ -669,8 +1027,8 @@ window.requestAnimationFrame(timer);
 TODO:
 0. Island + Cookie Factory | DONE
 1. Upgrade tab | DONE
-2. Achievements + unlock on completing x achievements
-3. Local Storage + Firebase setup 
+2. Achievements + unlock on completing x achievements | DONE
+3. Local Storage + Firebase setup | DONE
 4. Pop-up descriptions and alerts
-5. Hire 
+5. Hire completion
 */

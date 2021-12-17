@@ -246,6 +246,16 @@
 
 .Upgrade7 { background-color: #268824; grid-row: 8; grid-column: 1;}
 
+.Achievement1 { background-color: #0d300c; grid-row: 2; grid-column: 1;}
+
+.Achievement2 { background-color: #0d300c; grid-row: 3; grid-column: 1;}
+
+.Achievement3 { background-color: #0d300c; grid-row: 4; grid-column: 1;}
+
+.Achievement4 { background-color: #0d300c; grid-row: 5; grid-column: 1;}
+
+.Achievement5 { background-color: #0d300c; grid-row: 6; grid-column: 1;}
+
 .Text1 { grid-area: Text1; background-color: #000000; color: white; font-size: 25px; display: inline;}
 
 .Text2 { grid-area: Text2; background-color: #000000; color: white; display: inline;}
@@ -259,6 +269,10 @@
 .Text6 { grid-area: Text6; background-color: #000000; color: white; display: inline;}
 
 .Text7 { grid-area: Text7; background-color: #000000; color: white; display: inline;}
+
+.Text1:hover, .Text2:hover , .Text3:hover , .Text4:hover , .Text5:hover , .Text6:hover , .Text7:hover, .LeftSpan:hover, .RightSpan:hover, .Achievement1:hover, .Achievement2:hover, .Achievement3:hover, .Achievement4:hover, .Achievement5:hover { 
+  cursor: default;
+}
 
 .LeftSpan {
   display: inline;
@@ -374,6 +388,38 @@ img:hover {
 .Baker4Description { grid-area: Baker4Description; background-color: #805400; font-size: 45px; font-family: "Cotton Butter"; text-align: center; line-height: 135px; border-style: solid; border-color: black; border-width: 2px;}
 
 .Baker5Description { grid-area: Baker5Description; background-color: #805400; font-size: 45px; font-family: "Cotton Butter"; text-align: center; line-height: 135px; border-style: solid; border-color: black; border-width: 2px;}
+
+.ToastContainer {
+  position: absolute;
+  bottom: 0.75rem;
+  z-index: 1;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+}
+
+.Toast {
+  position: relative;
+  border: 1px solid #e5e5e5;
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+  box-shadow: 0 0 0.75rem rgba(0, 0, 0, 0.5);
+  display: none;
+  margin-top: 0.75rem;
+  transition: 1s;
+  opacity: 0;
+  background-color: #af1212;
+  color: white;
+  font-size: 20px;
+}
+
+.Toast.block {
+  display: block;
+}
+
+.Toast.shown {
+  opacity: 1;
+}
 
 html, body , .container {
   height: 100%;
