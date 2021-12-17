@@ -154,7 +154,7 @@ function sell() {
 }
 
 function playAudio(audio) {
-    let clickdown = new Audio(`http://orteil.dashnet.org/cookieclicker/snd/${audio}.mp3`);
+    let clickdown = new Audio(`${audio}.mp3`);
         clickdown.volume = 0.2;
         clickdown.load();
         clickdown.play();
