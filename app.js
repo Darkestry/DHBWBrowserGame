@@ -15,7 +15,9 @@ let loyalWorkers = 0;
 let clickMultiplier = 1;
 let sellingRateMultiplier = 1;
 let recruiters = 0;
-let arrow = document.getElementById("arrow")
+
+// HTML-elements
+let arrow = document.getElementById("arrow");
 
 let recruiterAmount = document.getElementById("recruiterAmount");
 
@@ -64,13 +66,14 @@ let rightSpan7 = document.getElementById("rightSpan7");
 let text6 = document.getElementById("Text6");
 let text7 = document.getElementById("Text7");
 
+// Hide overlapping divs and those that require to be unlocked
 document.getElementById("buyBaker1").style.display = "none";
 document.getElementById("buyBaker2").style.display = "none";
 document.getElementById("buyBaker3").style.display = "none";
 document.getElementById("buyBaker4").style.display = "none";
 document.getElementById("buyBaker5").style.display = "none";
 
-toggleSelection("buy");
+toggleSelection("buy"); // Default tab to show on startup
 
 arrow.style.display = "none";
 
@@ -83,12 +86,13 @@ baker5Amount.style.display = "none";
 upgrade6.style.display = "none";
 upgrade7.style.display = "none";
 
-let elapsed; // framerate of window object in milliseconds
-let cookiesPerFrame;
+let elapsed; // Framerate of window object in milliseconds
+let cookiesPerFrame; // Amount of cookies per frame
 let totalMoneyEarned = 0;
-let totalPlayTime = 0;
+let totalPlayTime = 0; // Total play time in seconds
 let unlockedAchievementsCount = 0;
 let clicksOnCookie = 0;
+
 function update() {
     document.getElementById("cookiecount").innerText = Math.round(cookies) + " Cookies";
     document.getElementById("cookierate").innerText = Math.round(((students * 0.4) + (grandmas * 4.4) + (bakers * 13.8) + (tribalCooks * 83.2) + (loyalWorkers * 152) + Number.EPSILON) * 10) / 10 + " Cookies/sec";
@@ -96,6 +100,7 @@ function update() {
     document.getElementById("moneyrate").innerText = "$" + Math.round((20 * quality * sellers * sellingRateMultiplier + Number.EPSILON) * 10) / 10 + "/sec";
     document.getElementById("dealerDescription").innerText = sellers + " / " + maxSellers + " Sellers";
     document.getElementById("qualitycount").innerText = Math.round(quality * 100) + "% Quality";
+
     if (totalMoneyEarned >= 1000000 && achievementsDict[1] === false) {
         unlockAchievement(1);
     }
@@ -293,6 +298,7 @@ function buyRecruiter() {
     update();
 }
 
+// TBD
 function buyPoliceOfficer() {
     showToast(document.getElementById("toast14"));
 }
@@ -309,6 +315,7 @@ function buyChemist() {
     showToast(document.getElementById("toast14"));
 }
 
+// Recruiter
 let temp_sellers = 0;
 let maxSellers = 1000;
 
@@ -351,7 +358,7 @@ function unlockUpgrade2() {
     if (cookies >= 20000) {
         cookies -= 20000;
         let choices = Math.floor(Math.random() * 100);
-        if (choices < 50) {
+        if (choices < 50) { // Chance to unlock = 50 %
             showToast(document.getElementById("toast1"));
             upgradesDict[2] = true;
             maxSellers += 3000;
@@ -381,7 +388,7 @@ function unlockUpgrade3() {
 }
 
 function unlockUpgrade4() {
-    if (unlockedAchievementsCount >= 2) {
+    if (unlockedAchievementsCount >= 1) {
         if (cookies >= 500000) {
             cookies -= 500000;
             let choices = Math.floor(Math.random() * 100);
@@ -398,7 +405,7 @@ function unlockUpgrade4() {
             playAudio("buy4");
         }
     } else {
-        showToast(document.getElementById("toast3"));
+        showToast(document.getElementById("toast2"));
     }
     update();
 }
@@ -524,10 +531,7 @@ function buyBaker5() {
     update();
 }
 
-function round11(num){
-    return Math.round(num*(Math.pow(10, 10))) / Math.pow(10, 10)
-}
-
+// Automatic generation of money and cookies
 function autoSell() {
     let minimum = Math.min(sellers, (5 * cookies))
     if (minimum < 1) {
@@ -568,7 +572,7 @@ function unlockAchievement(achievement) {
     showToast(document.getElementById("toast7"))
 }
 
-// CSS section
+// Audio
 const cookieimage = document.getElementById("cookieimage");
 const moneyimage = document.getElementById("moneyimage");
 
@@ -580,6 +584,7 @@ moneyimage.addEventListener("click", e => {
     playAudio("sell1")
 });
 
+// CSS section
 function buy() {
     let e = document.getElementById("buy");
     highlight(e);
@@ -730,8 +735,6 @@ function toggleSelection(toggle) {
     }
 }
 
-
-
 function upgrade() {
     var e = document.getElementById("upgrade");
     highlight(e);
@@ -797,7 +800,7 @@ function highlight(element) {
     }
 }
 
-/* Toasts */
+// Toasts
 function showToast(toast) {
     if (toast.classList.contains("block")) {
         return;
@@ -820,7 +823,7 @@ function removeBlockClass(event) {
     event.target.classList.remove("block");
 }
 
-/* save game */
+// Save game in localStorage
 function saveGame() {
     let gameSave = {
         cookies: cookies,  
@@ -854,15 +857,16 @@ function saveGame() {
 setInterval(function () {
     saveGame();
     showToast(document.getElementById("toast15"));
-}, 30000); // 30000ms = 30 seconds
+}, 30000); // execute every 30000ms = 30 seconds
 
+// Disable the save shortcut ctrl + s
 document.addEventListener("keydown", function(event) {
-    if (event.ctrlKey && event.key == 83) {
+    if (event.ctrlKey && event.code == "KeyS") {
         event.preventDefault();
     }
 }, false);
 
-/* load game */
+// Load game from localStorage
 function loadGame() {
     let savedGame = JSON.parse(localStorage.getItem("gameSave"));
     if (typeof savedGame.cookies !== "undefined") cookies = savedGame.cookies;
@@ -1009,12 +1013,12 @@ window.onload = function () {
     update();
 };
 
-/* Update values on every frame rendered */
+// Update values on every frame rendered
 let lastTime;
 
 function timer(now) {
     elapsed = now - lastTime;
-    lastTime = now; //HighResDomTimeStamp
+    lastTime = now; //DOMHighResTimeStamp 
     autoSell();
     autoCook();
     autoRecruit();
@@ -1022,13 +1026,3 @@ function timer(now) {
     requestAnimationFrame(timer);
 }
 window.requestAnimationFrame(timer);
-
-/* 
-TODO:
-0. Island + Cookie Factory | DONE
-1. Upgrade tab | DONE
-2. Achievements + unlock on completing x achievements | DONE
-3. Local Storage + Firebase setup | DONE
-4. Pop-up descriptions and alerts
-5. Hire completion
-*/
